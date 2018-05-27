@@ -1,0 +1,187 @@
+<%= form_with(model: stock, local: true) do |form| %>
+  <% if stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(stock.errors.count, "error") %> prohibited this stock from being saved:</h2>
+
+      <ul>
+      <% stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :symbol %>
+    <%= form.text_field :symbol, id: :stock_symbol %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :stock_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :industry_id %>
+    <%= form.text_field :industry_id, id: :stock_industry_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sector_id %>
+    <%= form.text_field :sector_id, id: :stock_sector_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ccc_seq %>
+    <%= form.number_field :ccc_seq, id: :stock_ccc_seq %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :stock_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :yield_years %>
+    <%= form.number_field :yield_years, id: :stock_yield_years %>
+  </div>
+
+  <div class="field">
+    <%= form.label :div_yield %>
+    <%= form.text_field :div_yield, id: :stock_div_yield %>
+  </div>
+
+  <div class="field">
+    <%= form.label :old_rate %>
+    <%= form.text_field :old_rate, id: :stock_old_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :new_rate %>
+    <%= form.text_field :new_rate, id: :stock_new_rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mr_inc %>
+    <%= form.text_field :mr_inc, id: :stock_mr_inc %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ex_div %>
+    <%= form.datetime_select :ex_div, id: :stock_ex_div %>
+  </div>
+
+  <div class="field">
+    <%= form.label :div_record %>
+    <%= form.datetime_select :div_record, id: :stock_div_record %>
+  </div>
+
+  <div class="field">
+    <%= form.label :div_pay %>
+    <%= form.datetime_select :div_pay, id: :stock_div_pay %>
+  </div>
+
+  <div class="field">
+    <%= form.label :qtly_sched %>
+    <%= form.text_field :qtly_sched, id: :stock_qtly_sched %>
+  </div>
+
+  <div class="field">
+    <%= form.label :annual_div %>
+    <%= form.text_field :annual_div, id: :stock_annual_div %>
+  </div>
+
+  <div class="field">
+    <%= form.label :payout %>
+    <%= form.text_field :payout, id: :stock_payout %>
+  </div>
+
+  <div class="field">
+    <%= form.label :i_graham %>
+    <%= form.text_field :i_graham, id: :stock_i_graham %>
+  </div>
+
+  <div class="field">
+    <%= form.label :p_e %>
+    <%= form.text_field :p_e, id: :stock_p_e %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fye_month %>
+    <%= form.number_field :fye_month, id: :stock_fye_month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ttm_eps %>
+    <%= form.text_field :ttm_eps, id: :stock_ttm_eps %>
+  </div>
+
+  <div class="field">
+    <%= form.label :peg_ratio %>
+    <%= form.text_field :peg_ratio, id: :stock_peg_ratio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ttm_p_sales %>
+    <%= form.text_field :ttm_p_sales, id: :stock_ttm_p_sales %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mrq_p_book %>
+    <%= form.text_field :mrq_p_book, id: :stock_mrq_p_book %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ttm_roe %>
+    <%= form.text_field :ttm_roe, id: :stock_ttm_roe %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ty_growth %>
+    <%= form.text_field :ty_growth, id: :stock_ty_growth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ny_growth %>
+    <%= form.text_field :ny_growth, id: :stock_ny_growth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_5_growth %>
+    <%= form.text_field :last_5_growth, id: :stock_last_5_growth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :est_5_growth %>
+    <%= form.text_field :est_5_growth, id: :stock_est_5_growth %>
+  </div>
+
+  <div class="field">
+    <%= form.label :na %>
+    <%= form.number_field :na, id: :stock_na %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mktcap %>
+    <%= form.number_field :mktcap, id: :stock_mktcap %>
+  </div>
+
+  <div class="field">
+    <%= form.label :inside_own %>
+    <%= form.text_field :inside_own, id: :stock_inside_own %>
+  </div>
+
+  <div class="field">
+    <%= form.label :debt_equity %>
+    <%= form.text_field :debt_equity, id: :stock_debt_equity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :chowder_rule %>
+    <%= form.text_field :chowder_rule, id: :stock_chowder_rule %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
