@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  holding: one
+  holding_type: Stock
+  price: 1.5
+  quantity: 1.5
+  date: 2018-05-27 14:26:34
+  portfolio: one
+
+two:
+  holding: two
+  holding_type: Stock
+  price: 1.5
+  quantity: 1.5
+  date: 2018-05-27 14:26:34
+  portfolio: two

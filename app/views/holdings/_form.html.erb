@@ -1,0 +1,42 @@
+<%= form_with(model: holding, local: true) do |form| %>
+  <% if holding.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(holding.errors.count, "error") %> prohibited this holding from being saved:</h2>
+
+      <ul>
+      <% holding.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :holding_id %>
+    <%= form.text_field :holding_id, id: :holding_holding_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price, id: :holding_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, id: :holding_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date, id: :holding_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :portfolio_id %>
+    <%= form.text_field :portfolio_id, id: :holding_portfolio_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

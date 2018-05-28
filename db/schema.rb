@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527205154) do
+ActiveRecord::Schema.define(version: 20180527212634) do
+
+  create_table "holdings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "holding_type"
+    t.bigint "holding_id"
+    t.float "price", limit: 24
+    t.float "quantity", limit: 24
+    t.datetime "date"
+    t.bigint "portfolio_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["holding_type", "holding_id"], name: "index_holdings_on_holding_type_and_holding_id"
+    t.index ["portfolio_id"], name: "index_holdings_on_portfolio_id"
+  end
 
   create_table "industries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name"
@@ -18,6 +31,16 @@ ActiveRecord::Schema.define(version: 20180527205154) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["sector_id"], name: "index_industries_on_sector_id"
+  end
+
+  create_table "portfolios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name"
+    t.bigint "user_id"
+    t.text "descripion"
+    t.datetime "start_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
   create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -105,7 +128,9 @@ ActiveRecord::Schema.define(version: 20180527205154) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "holdings", "portfolios"
   add_foreign_key "industries", "sectors"
+  add_foreign_key "portfolios", "users"
   add_foreign_key "stocks", "industries"
   add_foreign_key "stocks", "sectors"
 end
