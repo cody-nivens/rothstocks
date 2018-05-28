@@ -1,13 +1,13 @@
 class IndustriesGrid < BaseGrid
 
   scope do
-    Industry
+	  Industry.includes(:sector)
   end
 
-  filter(:id, :integer)
-  filter(:created_at, :date, :range => true)
+  filter(:sector, :string)
 
-  column(:id)
   column(:name)
-  date_column(:created_at)
+  column(:sector, :order => "sectors.name, industries.name") do
+	  self.sector.name
+  end
 end

@@ -39,10 +39,15 @@ class PortfoliosControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy portfolio" do
-    assert_difference('Portfolio.count', -1) do
-      delete portfolio_url(@portfolio)
-    end
+    assert_difference('Portfolio.count', 0) do
+      assert_difference('Portfolio.count') do
+        post portfolios_url, params: { portfolio: { descripion: @portfolio.descripion, name: "#{@portfolio.name}3", start_date: @portfolio.start_date, user_id: @portfolio.user_id } }
+      end
+      assert_difference('Portfolio.count', -1) do
+	      delete portfolio_url(Portfolio.find_by_name("#{@portfolio.name}3"))
+      end
 
-    assert_redirected_to portfolios_url
+      assert_redirected_to portfolios_url
+    end
   end
 end
