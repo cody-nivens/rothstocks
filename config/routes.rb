@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'welcome#index'
+  get '/stocks/list', to: 'stocks#list', as: 'stock_list'
   get '/', to: 'welcome#index', as: 'home'
   get '/faq', to: 'application#faq', as: 'faq'
   get '/secret', to: 'application#secret', as: 'secret'

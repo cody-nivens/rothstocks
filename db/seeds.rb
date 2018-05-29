@@ -24,19 +24,25 @@ require 'csv'
 require 'spreadsheet'
 
 
+if Sector.count == 0
 CSV.foreach(Rails.root.join('db', 'seeds', 'sectors.csv'), headers: true) do |row|
   s = Sector.new
   s.name = row['name']
   s.save
 end
+end
 
+if Industry.count == 0
 CSV.foreach(Rails.root.join('db', 'seeds', 'sector_industries.csv'), headers: true) do |row|
   s = Industry.new
   s.name = row['name']
   s.sector_id = Sector.find_by_name(row['sector']).id
   s.save
 end
+end
 
+
+if Stock.count == 0
 book = Spreadsheet.open(Rails.root.join('db', 'seeds', 'champions.xls'))
 
 sheet = book.worksheet 'All CCC'
@@ -82,3 +88,4 @@ sheet.each 6 do |row|
 
 end
 
+end

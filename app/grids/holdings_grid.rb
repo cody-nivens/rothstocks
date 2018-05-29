@@ -4,10 +4,13 @@ class HoldingsGrid < BaseGrid
     Holding
   end
 
-  filter(:id, :integer)
-  filter(:created_at, :date, :range => true)
+  filter(:holding, :string)
 
   column(:id)
-  column(:holding)
-  date_column(:created_at)
+  column(:holding, :html => true) do |holding|
+	  link_to "#{holding.holding.symbol} #{holding.holding.name}", "/holdings/#{holding.id}"
+  end
+  column(:price)
+  column(:quantity)
+  date_column(:date)
 end

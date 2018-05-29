@@ -1,7 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  symbol: MyString
+  symbol: MS1
   name: MyString
   industry: one
   sector: one
@@ -37,7 +37,7 @@ one:
   chowder_rule: 1.5
 
 two:
-  symbol: MyString2
+  symbol: MS2
   name: MyString
   industry: two
   sector: two

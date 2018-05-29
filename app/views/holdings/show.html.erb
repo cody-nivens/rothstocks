@@ -2,7 +2,7 @@
 
 <p>
   <strong>Holding:</strong>
-  <%= @holding.holding %>
+  <%= "#{@holding.holding.symbol} #{@holding.holding.name}" %>
 </p>
 
 <p>
@@ -22,7 +22,7 @@
 
 <p>
   <strong>Portfolio:</strong>
-  <%= @holding.portfolio %>
+  <%= @holding.portfolio.name %>
 </p>
 
 <%= link_to 'Edit', edit_holding_path(@holding) %> |

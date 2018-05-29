@@ -4,10 +4,20 @@ class StocksController < ApplicationController
 
 
   def index
-    @grid = StocksGrid.new(grid_params) do |scope|
-      scope.page(params[:page])
+    respond_to do |format|
+       format.html {
+	   @grid = StocksGrid.new(grid_params) do |scope|
+               scope.page(params[:page])
+           end
+       }
+       format.json {
+           @stocks = Stock.order(:symbol).where("symbol like ?", "%#{params[:term]}%")
+	   #render json: @stocks.map(&:symbol)
+	   render json: @stocks.map {|x| "#{x.symbol} #{x.name}" }
+       }
     end
   end
+
 
   # GET /stocks/1
   # GET /stocks/1.json

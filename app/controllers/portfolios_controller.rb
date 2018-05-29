@@ -1,15 +1,20 @@
 class PortfoliosController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
   def index
     @grid = PortfoliosGrid.new(grid_params) do |scope|
-      scope.page(params[:page])
+      scope.where(:user_id => current_user.id).page(params[:page])
     end
   end
 
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
+    @grid = HoldingsGrid.new(grid_params) do |scope|
+      scope.where(portfolio_id: @portfolio.id).page(params[:page])
+    end
+
   end
 
   # GET /portfolios/new

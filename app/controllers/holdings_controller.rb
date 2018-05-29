@@ -1,7 +1,7 @@
 class HoldingsController < ApplicationController
   def index
     @grid = HoldingsGrid.new(grid_params) do |scope|
-      scope.page(params[:page])
+	    scope.where(portfolio_id: params[:portfolio_id]).page(params[:page])
     end
   end
 
@@ -15,6 +15,7 @@ class HoldingsController < ApplicationController
   # GET /holdings/new
   def new
     @holding = Holding.new
+    @holding.portfolio_id = params[:portfolio_id]
   end
 
   # GET /holdings/1/edit
@@ -74,6 +75,6 @@ class HoldingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def holding_params
-      params.require(:holding).permit(:holding_id, :holding_type, :price, :quantity, :date, :portfolio_id)
+      params.require(:holding).permit(:holding_id, :holding_type, :price, :quantity, :date, :portfolio_id, :holding_symbol)
     end
 end

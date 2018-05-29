@@ -12,6 +12,11 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
+  test "should get index as json" do
+    get stocks_url, as: :json
+    assert_response :success
+  end
+
   test "should get new" do
     sign_in @user
     get new_stock_url

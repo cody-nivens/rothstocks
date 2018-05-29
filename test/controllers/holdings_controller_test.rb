@@ -9,7 +9,7 @@ include Devise::Test::IntegrationHelpers
 
   test "should get index" do
     sign_in @user
-    get holdings_url
+    get holdings_url, params: { portfolio_id: @holding.portfolio_id }
     assert_response :success
   end
 
