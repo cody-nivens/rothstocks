@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class HoldingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  def setup
+    @holding = holdings(:one)
+  end
 
   test "should create holding" do
 	  a = Holding.new
@@ -12,4 +12,15 @@ class HoldingTest < ActiveSupport::TestCase
 	  a.save
 	  assert_equal 'MS1',a.holding.symbol
   end
+
+  test 'valid holding' do
+    assert @holding.valid?
+  end
+
+  test 'invalid without holding' do
+    @holding.holding = nil
+    refute @holding.valid?
+    assert_not_nil @holding.errors[:holding]
+  end
+
 end
