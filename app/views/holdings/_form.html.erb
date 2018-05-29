@@ -12,8 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :holding_id %>
-    <%= form.text_field :holding_id, id: :holding_holding_id %>
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :holding_name %>
   </div>
 
   <div class="field">
@@ -31,10 +31,7 @@
     <%= form.datetime_select :date, id: :holding_date %>
   </div>
 
-  <div class="field">
-    <%= form.label :portfolio_id %>
-    <%= form.text_field :portfolio_id, id: :holding_portfolio_id %>
-  </div>
+    <%= form.hidden_field :portfolio_id, id: :holding_portfolio_id %>
 
   <div class="actions">
     <%= form.submit %>

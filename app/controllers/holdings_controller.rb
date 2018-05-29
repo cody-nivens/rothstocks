@@ -1,11 +1,11 @@
 class HoldingsController < ApplicationController
-  before_action :set_holding, only: [:show, :edit, :update, :destroy]
-
-  # GET /holdings
-  # GET /holdings.json
   def index
-    @holdings = Holding.all
+    @grid = HoldingsGrid.new(grid_params) do |scope|
+      scope.page(params[:page])
+    end
   end
+
+  before_action :set_holding, only: [:show, :edit, :update, :destroy]
 
   # GET /holdings/1
   # GET /holdings/1.json
@@ -61,6 +61,11 @@ class HoldingsController < ApplicationController
     end
   end
 
+  protected
+
+  def grid_params
+    params.fetch(:holdings_grid, {}).permit!
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_holding

@@ -16,19 +16,11 @@
     <%= form.text_field :name, id: :portfolio_name %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :portfolio_user_id %>
-  </div>
+    <%= form.hidden_field :user_id, id: :portfolio_user_id %>
 
   <div class="field">
     <%= form.label :descripion %>
     <%= form.text_area :descripion, id: :portfolio_descripion %>
-  </div>
-
-  <div class="field">
-    <%= form.label :start_date %>
-    <%= form.datetime_select :start_date, id: :portfolio_start_date %>
   </div>
 
   <div class="actions">

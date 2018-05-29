@@ -1,10 +1,10 @@
 class PortfoliosController < ApplicationController
   before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
 
-  # GET /portfolios
-  # GET /portfolios.json
   def index
-    @portfolios = Portfolio.all
+    @grid = PortfoliosGrid.new(grid_params) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   # GET /portfolios/1
@@ -15,6 +15,7 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/new
   def new
     @portfolio = Portfolio.new
+    @portfolio.user = current_user
   end
 
   # GET /portfolios/1/edit
@@ -59,6 +60,12 @@ class PortfoliosController < ApplicationController
       format.html { redirect_to portfolios_url, notice: 'Portfolio was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  protected
+
+  def grid_params
+    params.fetch(:portfolios_grid, {}).permit!
   end
 
   private

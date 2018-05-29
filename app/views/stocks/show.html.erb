@@ -1,174 +1,146 @@
-<p id="notice"><%= notice %></p>
+<p id="notice"><td><%= notice %></td></tr>
 
-<p>
-  <strong>Symbol:</strong>
-  <%= @stock.symbol %>
-</p>
+<table>
+	<tbody>
+<tr>
+  <th>Symbol</th>
+  <th>Name</th>
+  <th>Industry</th>
+  <th>Sector</th>
+</tr>
 
-<p>
-  <strong>Name:</strong>
-  <%= @stock.name %>
-</p>
+<tr>
+  <td><%= @stock.symbol %></td>
+  <td><%= @stock.name %></td>
+  <td><%= @stock.industry.name %></td>
+  <td><%= @stock.sector.name %></td>
+</tr>
 
-<p>
-  <strong>Industry:</strong>
-  <%= @stock.industry %>
-</p>
+<tr>
+  <th>Ccc seq</th>
+  <td></td>
+  <td rowspan=2><%= @stock.price %></td>
+  <td rowspan=2><%= @stock.div_yield %></td>
+</tr>
+<tr>
+  <td><%= @stock.ccc_seq %></td>
+</tr>
 
-<p>
-  <strong>Sector:</strong>
-  <%= @stock.sector %>
-</p>
+  <tr>
+  <th>Yield years</th>
+	  <th colspan=3>Dividend Information</th>
+  </tr>
 
-<p>
-  <strong>Ccc seq:</strong>
-  <%= @stock.ccc_seq %>
-</p>
+<tr>
+  <td><%= @stock.yield_years %></td>
+  <th>Old rate</th>
+  <th>New rate</th>
+  <th>MR% inc</th>
+</tr>
 
-<p>
-  <strong>Price:</strong>
-  <%= @stock.price %>
-</p>
+<tr>
+  <th>Qtly Sched</th>
+  <td><%= @stock.old_rate %></td>
+  <td><%= @stock.new_rate %></td>
+  <td><%= @stock.mr_inc %></td>
+</tr>
 
-<p>
-  <strong>Yield years:</strong>
-  <%= @stock.yield_years %>
-</p>
+<tr>
+  <td><%= @stock.qtly_sched %></td>
+  <th>Ex div</th>
+  <th>Div record</th>
+  <th>Div pay</th>
+</tr>
 
-<p>
-  <strong>Div yield:</strong>
-  <%= @stock.div_yield %>
-</p>
+<tr>
+  <th>Annual div</th>
+  <td><%= @stock.ex_div %></td>
+  <td><%= @stock.div_record %></td>
+  <td><%= @stock.div_pay %></td>
+</tr>
 
-<p>
-  <strong>Old rate:</strong>
-  <%= @stock.old_rate %>
-</p>
+<tr>
+  <td><%= @stock.annual_div %></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
 
-<p>
-  <strong>New rate:</strong>
-  <%= @stock.new_rate %>
-</p>
 
-<p>
-  <strong>Mr inc:</strong>
-  <%= @stock.mr_inc %>
-</p>
+<tr>
+  <th>Payout</th>
+  <th>P/E</th>
+  <th>TTM EPS</th>
+  <th>PEG Ratio</th>
+</tr>
 
-<p>
-  <strong>Ex div:</strong>
-  <%= @stock.ex_div %>
-</p>
+<tr>
+  <td><%= @stock.payout %></td>
+  <td><%= @stock.p_e %></td>
+  <td><%= @stock.ttm_eps %></td>
+  <td><%= @stock.peg_ratio %></td>
+</tr>
 
-<p>
-  <strong>Div record:</strong>
-  <%= @stock.div_record %>
-</p>
+<tr>
+  <th>+/-% vs. Graham</th>
+  <th>TTM P/Sales</th>
+  <th>MRQ P/Book</th>
+  <th>TTM ROE</th>
+</tr>
 
-<p>
-  <strong>Div pay:</strong>
-  <%= @stock.div_pay %>
-</p>
+<tr>
+  <td><%= @stock.i_graham %></td>
+  <td><%= @stock.ttm_p_sales %></td>
+  <td><%= @stock.mrq_p_book %></td>
+  <td><%= @stock.ttm_roe %></td>
+</tr>
 
-<p>
-  <strong>Qtly sched:</strong>
-  <%= @stock.qtly_sched %>
-</p>
+<tr>
+  <th>TY growth</th>
+  <th>NY growth</th>
+  <th>Last 5 growth</th>
+  <th>Est 5 growth</th>
+</tr>
 
-<p>
-  <strong>Annual div:</strong>
-  <%= @stock.annual_div %>
-</p>
+<tr>
+  <td><%= @stock.ty_growth %></td>
+  <td><%= @stock.ny_growth %></td>
+  <td><%= @stock.last_5_growth %></td>
+  <td><%= @stock.est_5_growth %></td>
+</tr>
 
-<p>
-  <strong>Payout:</strong>
-  <%= @stock.payout %>
-</p>
+<tr>
+  <th>Mktcap</th>
+  <th>FYE month</th>
+  <th>NA</th>
+  <td></td>
+</tr>
 
-<p>
-  <strong>I graham:</strong>
-  <%= @stock.i_graham %>
-</p>
+<tr>
+  <td><%= @stock.mktcap %></td>
+  <td><%= @stock.fye_month %></td>
+  <td><%= @stock.na %></td>
+  <td></td>
+</tr>
 
-<p>
-  <strong>P e:</strong>
-  <%= @stock.p_e %>
-</p>
+<tr>
+  <th>Inside own</th>
+  <th>Debt equity</th>
+  <th>Chowder rule</th>
+  <td></td>
+</tr>
 
-<p>
-  <strong>Fye month:</strong>
-  <%= @stock.fye_month %>
-</p>
-
-<p>
-  <strong>Ttm eps:</strong>
-  <%= @stock.ttm_eps %>
-</p>
-
-<p>
-  <strong>Peg ratio:</strong>
-  <%= @stock.peg_ratio %>
-</p>
-
-<p>
-  <strong>Ttm p sales:</strong>
-  <%= @stock.ttm_p_sales %>
-</p>
-
-<p>
-  <strong>Mrq p book:</strong>
-  <%= @stock.mrq_p_book %>
-</p>
-
-<p>
-  <strong>Ttm roe:</strong>
-  <%= @stock.ttm_roe %>
-</p>
-
-<p>
-  <strong>Ty growth:</strong>
-  <%= @stock.ty_growth %>
-</p>
-
-<p>
-  <strong>Ny growth:</strong>
-  <%= @stock.ny_growth %>
-</p>
-
-<p>
-  <strong>Last 5 growth:</strong>
-  <%= @stock.last_5_growth %>
-</p>
-
-<p>
-  <strong>Est 5 growth:</strong>
-  <%= @stock.est_5_growth %>
-</p>
-
-<p>
-  <strong>Na:</strong>
-  <%= @stock.na %>
-</p>
-
-<p>
-  <strong>Mktcap:</strong>
-  <%= @stock.mktcap %>
-</p>
-
-<p>
-  <strong>Inside own:</strong>
-  <%= @stock.inside_own %>
-</p>
-
-<p>
-  <strong>Debt equity:</strong>
-  <%= @stock.debt_equity %>
-</p>
-
-<p>
-  <strong>Chowder rule:</strong>
-  <%= @stock.chowder_rule %>
-</p>
-
-<%= link_to 'Edit', edit_stock_path(@stock) %> |
-<%= link_to 'Back', stocks_path %>
+<tr>
+  <td><%= @stock.inside_own %></td>
+  <td><%= @stock.debt_equity %></td>
+  <td><%= @stock.chowder_rule %></td>
+  <td></td>
+</tr>
+<tr>
+<th><%= link_to 'Edit', edit_stock_path(@stock) %></th>
+<th><%= link_to 'Back', stocks_path %></th>
+  <td></td>
+  <td></td>
+</tr>
+	</tbody>
+</table>

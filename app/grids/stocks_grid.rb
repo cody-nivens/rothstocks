@@ -4,8 +4,6 @@ class StocksGrid < BaseGrid
 	  Stock.includes(:industry)
   end
 
-  filter(:ccc_seq, :integer)
-  filter(:symbol, :string)
   filter(:condition1, :dynamic)
   filter(:condition2, :dynamic)
   filter(:condition3, :dynamic)
@@ -14,8 +12,12 @@ class StocksGrid < BaseGrid
   filter(:condition6, :dynamic)
 
   column(:ccc_seq, :header => "CCC")
-  column(:symbol, :header => "Sym")
-  column(:name)
+  column(:symbol, :header => "Sym", :html => true) do |stock|
+	  link_to stock.symbol, "stocks/#{stock.id}"
+  end
+  column(:name, :html => true) do |stock|
+	  link_to stock.name, "stocks/#{stock.id}"
+  end
   column(:industry) do
 	  self.industry.name
   end
@@ -45,5 +47,8 @@ class StocksGrid < BaseGrid
   end
   column(:est_5_growth, :header => "Ext 5 Growth") do
 	  "%.2f" %  self.est_5_growth
+  end
+  column(:actions, :html => true ) do |stock|
+	  link_to "View", "stocks/#{stock.id}/add"
   end
 end
