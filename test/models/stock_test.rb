@@ -10,7 +10,7 @@ class StockTest < ActiveSupport::TestCase
   end
 
   test 'invalid without stock' do
-    @stock.stock = nil
+    @stock.symbol = nil
     refute @stock.valid?
     assert_not_nil @stock.errors[:stock]
   end

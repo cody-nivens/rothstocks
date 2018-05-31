@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'autoprefixer-rails'
 gem "seedbank"
 
 group :development, :test do
@@ -44,6 +45,8 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
+  gem 'nokogiri'
+  gem 'mini_portile2', '~>2.3.0'
 end
 
 group :development do
