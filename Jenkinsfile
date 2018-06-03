@@ -25,6 +25,6 @@ node {
         sh "kubectl create -f railsapp_setup_job.yaml"
         sh "kubectl create -f railsapp_service.yaml"
         sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' railsapp_deployment.yaml | kubectl apply -f -"
-        sh "kubectl rollout status deployment/rothstocks"
+        sh "kubectl rollout status deployment/railsapp-deployment
     }
 }
