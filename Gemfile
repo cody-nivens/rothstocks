@@ -33,7 +33,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
 
 group :development, :test do
