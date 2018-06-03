@@ -7,7 +7,7 @@ node {
     sh "git rev-parse --short HEAD > commit-id"
 
     tag = readFile('commit-id').replace("\n", "").replace("\r", "")
-    appName = "RothStocks"
+    appName = "rothstocks"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}:${tag}"
     env.BUILDIMG=imageName
@@ -24,7 +24,7 @@ node {
 
         sh "kubectl create -f railsapp_setup_job.yaml"
         sh "kubectl create -f railsapp_service.yaml"
-        sh "sed 's#127.0.0.1:30400/RothStocks:latest#'$BUILDIMG'#' railsapp_deployment.yaml | kubectl apply -f -"
-        sh "kubectl rollout status deployment/RothStocks"
+        sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' railsapp_deployment.yaml | kubectl apply -f -"
+        sh "kubectl rollout status deployment/rothstocks"
     }
 }
