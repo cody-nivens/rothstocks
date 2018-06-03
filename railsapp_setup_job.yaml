@@ -1,0 +1,28 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: setup
+spec:
+  template:
+    metadata:
+      name: setup
+    spec:
+      containers:
+      - name: setup
+        image: 127.0.0.1:30400/rothstocks:latest
+        args: ["rake db:create && rake db:migrate && rake db:seed"]
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: "railsapp-secrets"
+              key: "database-url"
+        - name: RAILS_APP
+          value: "production"
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: "railsapp-secrets"
+              key: "secret-key-base"          
+      restartPolicy: Never
+
