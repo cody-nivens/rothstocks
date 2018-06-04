@@ -17,7 +17,7 @@ spec:
             secretKeyRef:
               name: "railsapp-secrets"
               key: "database-url"
-        - name: RAILS_APP
+        - name: RAILS_ENV
           value: "production"
         - name: SECRET_KEY_BASE
           valueFrom:
