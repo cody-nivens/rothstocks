@@ -12,17 +12,27 @@ spec:
         image: 127.0.0.1:30400/rothstocks:latest
         args: ["rake db:create && rake db:migrate && rake db:seed"]
         env:
-        - name: DATABASE_URL
+        - name: DATABASE_USER
           valueFrom:
             secretKeyRef:
-              name: "railsapp-secrets"
-              key: "database-url"
+              name: db-user
+              key: username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: password
+        - name: DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-name
+              key: name
         - name: RAILS_ENV
-          value: "production"
+          value: production
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
-              name: "railsapp-secrets"
-              key: "secret-key-base"          
+              name: railsapp-secrets
+              key: secret-key-base          
       restartPolicy: Never
 
