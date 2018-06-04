@@ -6,7 +6,6 @@ node {
     
     sh "git rev-parse --short HEAD > commit-id"
 
-    #tag = readFile('commit-id').replace("\n", "").replace("\r", "")
     tag = 'latest'
     appName = "rothstocks"
     registryHost = "127.0.0.1:30400/"
