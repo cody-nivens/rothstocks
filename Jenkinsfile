@@ -25,6 +25,7 @@ node {
         sh "kubectl apply --namespace default -f railsapp_setup_job.yaml"
         sh "kubectl apply --namespace default -f railsapp_service.yaml"
         sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' railsapp_deployment.yaml | kubectl apply --namespace default -f -"
+        sh "sleep 2"
         sh "kubectl rollout status deployment/railsapp-deployment"
     }
 }
