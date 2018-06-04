@@ -51,5 +51,6 @@ RUN bundle exec rake DATABASE_URL=mysql2:does_not_exist SECRET_KEY_BASE=dummytok
 # Will run on port 3000 by default
 EXPOSE 3000
 COPY docker-entrypoint.sh /usr/local/bin
+COPY database.yml.prod config/database.yml
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
