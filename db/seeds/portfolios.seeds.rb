@@ -1,6 +1,6 @@
 after :users do
   user = User.find_by(email: 'palo@alto.com')
-  portfolio = user.portfolio[0]
+  portfolio = Portfolio.create(name: "First pass at Roth", user_id: user.id)
 
   ['KO','AAPL','PG','JNJ'].each do |sym|
     stock = Stock.find_by(symbol: sym)
