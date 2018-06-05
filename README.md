@@ -35,4 +35,6 @@ $ echo -n "mysql://deploy:secret@127.0.0.1/railsapp"|base64
 bXlzcWw6Ly9kZXBsb3k6c2VjcmV0QDEyNy4wLjAuMS90b2Rv
 ```
 
+Parts of this project came from [Rails on Kubernetes](https://github.com/tzumby/rails-on-kubernetes.git), [Rails on Kubernetes - Part 2](https://blog.cosmocloud.co/rails-on-kubernetes-part-2/).
+
 # rothstock
