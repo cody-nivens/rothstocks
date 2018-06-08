@@ -1,5 +1,4 @@
-# README
-
+# rothstock
 This project is a two fold creature.  First is the Rails project and second is the setup to distribute a container for either Docker or Kubernetes.
 
 RothStock started as an attempt to determine stocks for my Roth account years ago (read when I had money :)).
@@ -37,4 +36,3 @@ bXlzcWw6Ly9kZXBsb3k6c2VjcmV0QDEyNy4wLjAuMS90b2Rv
 
 Parts of this project came from [Rails on Kubernetes](https://github.com/tzumby/rails-on-kubernetes.git), [Rails on Kubernetes - Part 2](https://blog.cosmocloud.co/rails-on-kubernetes-part-2/).
 
-# rothstock
