@@ -10,15 +10,18 @@ node {
     appName = "rothstocks"
     registryHost = "127.0.0.1:30400/"
     imageName = "${registryHost}${appName}:${tag}"
+    imageNameTest = "${registryHost}${appName}_test:${tag}"
     env.BUILDIMG=imageName
 
     stage("Build"){
     
         sh "docker build -t ${imageName} -f ./Dockerfile ./"
+        sh "docker build -t ${imageNameTest} -f ./Dockerfile.test ./"
     }
     stage("Push"){
 
         sh "docker push ${imageName}"
+        sh "docker push ${imageNameTest}"
     }
     stage("Deploy"){
 
