@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: tests
+spec:
+  template:
+    metadata:
+      name: setup
+    spec:
+      containers:
+      - name: tests
+        image: 127.0.0.1:30400/rothstocks_test:latest
+        args: ["rake db:migrate && rake db:test:prepare && rake test"]
+        env:
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: db-user
+              key: username
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: db-user-pass
+              key: password
+        - name: DATABASE_NAME
+          valueFrom:
+            secretKeyRef:
+              name: db-name
+              key: name
+        - name: RAILS_ENV
+          value: test
+        - name: SECRET_KEY_BASE
+          valueFrom:
+            secretKeyRef:
+              name: railsapp-secrets
+              key: secret-key-base          
+      restartPolicy: Never
+

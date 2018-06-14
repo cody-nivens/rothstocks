@@ -23,6 +23,11 @@ node {
         sh "docker push ${imageName}"
         sh "docker push ${imageNameTest}"
     }
+    stage("Test"){
+        sh "kubectl delete --namespace app-test -f railsapp_tests_job.yaml"
+        sh "kubectl apply --namespace app-test -f railsapp_tests_job.yaml"
+        sh "kubectl rollout status --namespace default job.batch/tests"
+    }
     stage("Deploy"){
 
         sh "kubectl apply --namespace default -f railsapp_setup_job.yaml"
