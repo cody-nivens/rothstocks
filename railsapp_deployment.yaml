@@ -42,3 +42,8 @@ spec:
             value: "true"
           - name: RAILS_SERVE_STATIC_ASSETS
             value: "true"
+#          - name: REDIS_URL
+#            value: "redis-master.default.svc.cluster.local"
+#          - name: REDIS_PORT
+#            value: "6379"
+
