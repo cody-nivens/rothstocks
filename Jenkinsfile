@@ -25,7 +25,7 @@ node {
     }
     stage("Test"){
         sh "kubectl apply --namespace app-test -f railsapp_tests_job.yaml"
-        sh "kubectl --namespace app-test logs -f pod/$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}')"
+        sh "kubectl --namespace app-test logs -f pod/$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='\{.items[0].metadata.name\}')"
     }
     stage("Deploy"){
 
