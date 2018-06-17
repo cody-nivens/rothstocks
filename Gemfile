@@ -56,7 +56,7 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
-  gem 'nokogiri'
+  gem 'nokogiri', '1.8.2'
   gem 'mini_portile2', '~>2.3.0'
 end
 
