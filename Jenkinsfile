@@ -32,7 +32,7 @@ node {
 
         sh "kubectl apply --namespace default -f railsapp_setup_job.yaml"
         sh "sleep 15"
-        sh "kubectl --namespace default logs -f pod/\$(kubectl get pods --namespace default -l 'job-name=setup' -o jsonpath='{.items[0].metadata.name}')"
+        sh "until kubectl get jobs setup -o jsonpath='{.status.conditions[?(@.type=="Complete")].status}' | grep True ; do sleep 1 ; done"
         sh "kubectl apply --namespace default -f railsapp_service.yaml"
         sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' railsapp_deployment.yaml | kubectl apply --namespace default -f -"
         sh "kubectl rollout status --namespace default deployment/railsapp-deployment"
