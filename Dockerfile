@@ -22,8 +22,8 @@ WORKDIR /usr/src/app
 # the RubyGems. This is a separate step so the dependencies
 # will be cached unless changes to one of those two files
 # are made.
-#COPY Gemfile Gemfile.lock ./
-COPY Gemfile ./
+COPY Gemfile Gemfile.lock ./
+#COPY Gemfile ./
 RUN gem install bundler && bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
 
 # Copy dependencies for Node.js and instance the packages.
