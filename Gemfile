@@ -46,6 +46,8 @@ gem 'spreadsheet'
 gem 'ffi','1.9.23'
 gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
+gem 'nokogiri', '1.8.2'
+gem 'mini_portile2', '~>2.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -56,8 +58,6 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
-  gem 'nokogiri', '1.8.2'
-  gem 'mini_portile2', '~>2.3.0'
 end
 
 group :development do
