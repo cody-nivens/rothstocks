@@ -46,7 +46,7 @@ gem 'spreadsheet'
 gem 'ffi','1.9.23'
 gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
-gem 'nokogiri'
+gem 'nokogiri', '1.8.3'
 gem 'mini_portile2'
 
 group :development, :test do
