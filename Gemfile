@@ -58,6 +58,7 @@ group :development, :test do
   gem 'simplecov', require: false, group: :test
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
+  gem 'dotenv', '2.4.0'
 end
 
 group :development do

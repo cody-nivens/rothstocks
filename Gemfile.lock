@@ -264,6 +264,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   datagrid
   devise
+  dotenv (= 2.4.0)
   dotenv-rails
   ffi (= 1.9.23)
   high_voltage (~> 3.1)
