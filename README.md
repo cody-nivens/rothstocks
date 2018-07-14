@@ -4,12 +4,15 @@ This project is a two fold creature.  First is the Rails project and second is t
 RothStock started as an attempt to determine stocks for my Roth account years ago (read when I had money :)).
 
 The idea is to 
-* buy stock that pays a dividend 
-* when such a dividend is paid, buy more shares of the same stock.
+* Buy stock that pays a dividend.
+* Reinvest the dividend in more shares of the same stock.
 
 This process gives a two fold return on an invenstment:
 * First is the rising (one hopes) price of the stock.
 * The second is the increased amount of stock (original stock + shares bought by dividend).
+
+When initialized, the application has two users: palo@alto.com and jalo@alto.com.  Palo is an admin, Jalo is not.  The password is '12345689'.
+Additionally, 881 stocks are loaded from a Champion Dividend Stock Excel spreadsheet from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp).
 
 To set up the secrets for running this app, do the following.
 

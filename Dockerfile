@@ -25,9 +25,12 @@ WORKDIR /usr/src/app
 COPY Gemfile Gemfile.lock ./
 #COPY Gemfile ./
 RUN gem install bundler && \
-    gem install nokogiri -v 1.8.3 && \
-    gem install listen -v 3.1.5 && \
     bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development,test
+
+#RUN gem install bundler && \
+#    gem install nokogiri -v 1.8.3 && \
+#    gem install listen -v 3.1.5 && \
+#    bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development,test
 
 # Copy dependencies for Node.js and instance the packages.
 # Again, being separate means this will cache.
