@@ -11,8 +11,6 @@ This process gives a two fold return on an invenstment:
 * First is the rising (one hopes) price of the stock.
 * The second is the increased amount of stock (original stock + shares bought by dividend).
 
-The second part of the project is what I am working on now.
-
 To set up the secrets for running this app, do the following.
 
 ```sh
