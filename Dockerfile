@@ -24,7 +24,7 @@ WORKDIR /usr/src/app
 # are made.
 COPY Gemfile Gemfile.lock ./
 #COPY Gemfile ./
-RUN gem install bundler && bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development test
+RUN gem install bundler && bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development,test
 
 # Copy dependencies for Node.js and instance the packages.
 # Again, being separate means this will cache.
