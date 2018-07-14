@@ -22,9 +22,13 @@ WORKDIR /usr/src/app
 # the RubyGems. This is a separate step so the dependencies
 # will be cached unless changes to one of those two files
 # are made.
-#COPY Gemfile Gemfile.lock ./
-COPY Gemfile ./
-RUN gem install bundler && gem install nokogiri -v 1.8.3 && bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development
+COPY Gemfile Gemfile.lock ./
+#COPY Gemfile ./
+RUN gem install bundler && \
+    gem install nokogiri -v 1.8.3 && \
+    gem install listen -v 3.1.5 && \
+    bundle install -j "$(getconf _NPROCESSORS_ONLN)" --retry 5 --without development
+
 
 # Copy dependencies for Node.js and instance the packages.
 # Again, being separate means this will cache.
