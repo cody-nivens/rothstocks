@@ -270,7 +270,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   listen
-  mini_portile2
+  mini_portile2 (~> 2.3.0)
   mysql2 (= 0.5.1)
   nokogiri (= 1.8.3)
   puma (= 3.11.4)
