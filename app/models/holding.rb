@@ -8,8 +8,15 @@ class Holding < ApplicationRecord
     holding.try(:symbol)
   end
 
-  def holding_symbol=(symbol)
-	  self.holding = Stock.find_by(symbol: symbol.split(" ")[0]) if symbol.present?
+#  def holding_symbol=(symbol)
+#    self.holding = Stock.find_by(symbol: symbol.split(" ")[0]) if symbol.present?
+#  end
+
+  def value
+    return holding.quote["close"].to_f * quantity
   end
 
+  def cost
+    return price
+  end
 end

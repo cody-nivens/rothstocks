@@ -15,4 +15,8 @@ class StockTest < ActiveSupport::TestCase
     assert_not_nil @stock.errors[:stock]
   end
 
+  test 'valid quote' do
+    $redis.del(@stock.symbol)
+    assert @stock.quote
+  end
 end

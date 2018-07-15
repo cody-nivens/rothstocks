@@ -8,9 +8,9 @@ class HoldingTest < ActiveSupport::TestCase
   test "should create holding" do
 	  a = Holding.new
 	  a.portfolio_id = portfolios(:one).id
-	  a.holding_symbol = "MS1 Smothe"
+          a.holding = Stock.find_by_symbol('F')
 	  a.save
-	  assert_equal 'MS1',a.holding.symbol
+	  assert_equal 'F',a.holding.symbol
   end
 
   test 'valid holding' do
