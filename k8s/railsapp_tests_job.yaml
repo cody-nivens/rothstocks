@@ -36,5 +36,9 @@ spec:
             secretKeyRef:
               name: railsapp-secrets
               key: secret-key-base          
+        - name: REDIS_URL
+          value: "redis-master.default.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
       restartPolicy: Never
 
