@@ -35,8 +35,8 @@ RUN yarn install
 RUN npm rebuild node-sass --force
 
 # Set Rails to run in production
-ENV RAILS_ENV production 
-ENV RACK_ENV production
+ENV RAILS_ENV test
+ENV RACK_ENV test
 ENV RAILS_ROOT /usr/src/app
 # Use Rails for static files in public
 ENV RAILS_SERVE_STATIC_FILES 1
