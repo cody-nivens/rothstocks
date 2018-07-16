@@ -15,7 +15,7 @@ module RothStocks
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     #
-    config.cache_store = :redis_store, 'redis:// <%= ENV["REDIS_URL"] %>: <%= ENV["REDIS_PORT"] %>/0/cache', { expires_in: 90.minutes }
+    config.cache_store = :redis_store, "redis://#{ENV["REDIS_URL"]}:#{ENV["REDIS_PORT"]}/0/cache", { expires_in: 90.minutes }
     # config/application.rb
     ActiveRecord::Tasks::DatabaseTasks::LOCAL_HOSTS << "192.168.99.100" # <-- IP of your docker-host
   end
