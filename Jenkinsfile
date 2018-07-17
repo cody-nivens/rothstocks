@@ -24,7 +24,7 @@ node {
         sh "docker push ${imageNameTest}"
     }
     stage("Test"){
-        sh "kubectl delete --namespace app-test -f k8s/railsapp_tests_job.yaml"
+        sh "kubectl delete --ignore-not-found=true --namespace app-test -f k8s/railsapp_tests_job.yaml"
         sh "kubectl apply --namespace app-test -f k8s/railsapp_tests_job.yaml"
         sh "sleep 15"
         sh "kubectl --namespace app-test logs -f pod/\$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}')"
