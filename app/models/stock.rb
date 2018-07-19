@@ -10,10 +10,10 @@ class Stock < ApplicationRecord
      val = $redis.get(symbol)
      return ActiveSupport::JSON.decode(val) unless val.nil?
      
-     last_quote = StockQuote::Stock.quote(symbol)
+     last_quote = StockQuote::Stock.quote(symbol).to_json
 
-     $redis.set(symbol, last_quote.to_json)
+     $redis.set(symbol, last_quote)
 
-     return last_quote
+     return ActiveSupport::JSON.decode(last_quote)
   end
 end
