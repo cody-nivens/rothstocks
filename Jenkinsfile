@@ -26,7 +26,7 @@ node {
     stage("Test"){
         sh "kubectl delete --ignore-not-found=true --namespace app-test -f k8s/railsapp_tests_job.yaml"
         sh "kubectl apply --namespace app-test -f k8s/railsapp_tests_job.yaml"
-        sh "POD_NAME=\$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}') until kubectl get pod $POD_NAME --namespace app-test -o jsonpath='{.status.conditions[?(@.type==\"Ready\")].status}' | grep True ; do sleep 15; done"
+        sh "until kubectl get pod \$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}') --namespace app-test -o jsonpath='{.status.conditions[?(@.type==\"Ready\")].status}' | grep True ; do sleep 15; done"
         sh "kubectl --namespace app-test logs --pod-running-timeout=2m -f pod/\$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}')"
     }
     stage("Deploy"){
