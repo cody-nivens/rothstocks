@@ -31,6 +31,7 @@ node {
     }
     stage("Deploy"){
 
+        sh "kubectl delete --namespace default -f k8s/railsapp_setup_job.yaml"
         sh "kubectl apply --namespace default -f k8s/railsapp_setup_job.yaml"
         sh "sleep 15"
         sh "until kubectl get jobs setup --namespace default -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True ; do sleep 15; done"
