@@ -37,10 +37,10 @@ spec:
         - name: REDIS_PASS
           valueFrom:
             secretKeyRef:
-              name: redis-test
+              name: redis
               key: redis-password
         - name: REDIS_HOST
-          value: redis-test-master.app-test.svc.cluster.local
+          value: redis-master.app-test.svc.cluster.local
         - name: REDIS_PORT
           value: "6379"
       restartPolicy: Never
