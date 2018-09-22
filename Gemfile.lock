@@ -86,7 +86,7 @@ GEM
       railties (>= 3.2, < 6.0)
     erubi (1.7.1)
     execjs (2.7.0)
-    ffi (1.9.23)
+    ffi (1.9.25)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     globalid (0.4.1)
@@ -312,7 +312,7 @@ DEPENDENCIES
   devise
   dotenv (= 2.4.0)
   dotenv-rails
-  ffi (= 1.9.23)
+  ffi (~> 1.9.24)
   groupdate
   high_voltage (~> 3.1)
   jbuilder (~> 2.5)
