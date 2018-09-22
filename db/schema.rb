@@ -10,7 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180527212634) do
+ActiveRecord::Schema.define(version: 20180720232010) do
+
+  create_table "dividend_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "stock_id"
+    t.datetime "date"
+    t.integer "ccc_seq"
+    t.float "price", limit: 24
+    t.integer "yield_years"
+    t.float "div_yield", limit: 24
+    t.float "old_rate", limit: 24
+    t.float "new_rate", limit: 24
+    t.float "mr_inc", limit: 24
+    t.datetime "ex_div"
+    t.datetime "div_record"
+    t.datetime "div_pay"
+    t.string "qtly_sched"
+    t.float "annual_div", limit: 24
+    t.float "payout", limit: 24
+    t.float "i_graham", limit: 24
+    t.float "p_e", limit: 24
+    t.integer "fye_month"
+    t.float "ttm_eps", limit: 24
+    t.float "peg_ratio", limit: 24
+    t.float "ttm_p_sales", limit: 24
+    t.float "mrq_p_book", limit: 24
+    t.float "ttm_roe", limit: 24
+    t.float "ty_growth", limit: 24
+    t.float "ny_growth", limit: 24
+    t.float "last_5_growth", limit: 24
+    t.float "est_5_growth", limit: 24
+    t.integer "na"
+    t.integer "mktcap"
+    t.float "inside_own", limit: 24
+    t.float "debt_equity", limit: 24
+    t.float "chowder_rule", limit: 24
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["stock_id"], name: "index_dividend_ranks_on_stock_id"
+  end
 
   create_table "holdings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "holding_type"
@@ -66,36 +104,6 @@ ActiveRecord::Schema.define(version: 20180527212634) do
     t.string "name"
     t.bigint "industry_id"
     t.bigint "sector_id"
-    t.integer "ccc_seq"
-    t.float "price", limit: 24
-    t.integer "yield_years"
-    t.float "div_yield", limit: 24
-    t.float "old_rate", limit: 24
-    t.float "new_rate", limit: 24
-    t.float "mr_inc", limit: 24
-    t.datetime "ex_div"
-    t.datetime "div_record"
-    t.datetime "div_pay"
-    t.string "qtly_sched"
-    t.float "annual_div", limit: 24
-    t.float "payout", limit: 24
-    t.float "i_graham", limit: 24
-    t.float "p_e", limit: 24
-    t.integer "fye_month"
-    t.float "ttm_eps", limit: 24
-    t.float "peg_ratio", limit: 24
-    t.float "ttm_p_sales", limit: 24
-    t.float "mrq_p_book", limit: 24
-    t.float "ttm_roe", limit: 24
-    t.float "ty_growth", limit: 24
-    t.float "ny_growth", limit: 24
-    t.float "last_5_growth", limit: 24
-    t.float "est_5_growth", limit: 24
-    t.integer "na"
-    t.integer "mktcap"
-    t.float "inside_own", limit: 24
-    t.float "debt_equity", limit: 24
-    t.float "chowder_rule", limit: 24
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["industry_id"], name: "index_stocks_on_industry_id"
@@ -128,6 +136,7 @@ ActiveRecord::Schema.define(version: 20180527212634) do
     t.index ["user_id"], name: "index_users_roles_on_user_id"
   end
 
+  add_foreign_key "dividend_ranks", "stocks"
   add_foreign_key "holdings", "portfolios"
   add_foreign_key "industries", "sectors"
   add_foreign_key "portfolios", "users"

@@ -1,0 +1,27 @@
+<%= form_with(model: dividend_rank, local: true) do |form| %>
+  <% if dividend_rank.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dividend_rank.errors.count, "error") %> prohibited this dividend_rank from being saved:</h2>
+
+      <ul>
+      <% dividend_rank.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :stock_id %>
+    <%= form.number_field :stock_id, id: :dividend_rank_stock_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date, id: :dividend_rank_date %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -4,13 +4,17 @@ after :users do
 
   ['KO','AAPL','PG','JNJ'].each do |sym|
     stock = Stock.find_by(symbol: sym)
-    portfolio.holdings << Holding.create(holding: stock, price: stock.price*100, quantity: 100, date: Date.today)
+    dividend_rank = stock.dividend_rank.last
+
+    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
   portfolio = Portfolio.create(name: "Portfolio 2", user_id: user.id)
   
   ['FRT','TGT','CWT','CINF'].each do |sym|
     stock = Stock.find_by(symbol: sym)
-    portfolio.holdings << Holding.create(holding: stock, price: stock.price*100, quantity: 100, date: Date.today)
+    dividend_rank = stock.dividend_rank.last
+
+    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
 
   user2 = User.find_by(email: 'jalo@alto.com')
@@ -18,12 +22,16 @@ after :users do
 
   ['FRT','TGT','CWT','CINF'].each do |sym|
     stock = Stock.find_by(symbol: sym)
-    portfolio.holdings << Holding.create(holding: stock, price: stock.price*100, quantity: 100, date: Date.today)
+    dividend_rank = stock.dividend_rank.last
+
+    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
   portfolio = Portfolio.create(name: "Portfolio 2", user_id: user2.id)
   
   ['KO','AAPL','PG','JNJ'].each do |sym|
     stock = Stock.find_by(symbol: sym)
-    portfolio.holdings << Holding.create(holding: stock, price: stock.price*100, quantity: 100, date: Date.today)
+    dividend_rank = stock.dividend_rank.last
+
+    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
 end

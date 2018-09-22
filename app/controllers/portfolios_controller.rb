@@ -14,7 +14,6 @@ class PortfoliosController < ApplicationController
     @grid = HoldingsGrid.new(grid_params) do |scope|
       scope.where(portfolio_id: @portfolio.id).page(params[:page])
     end
-
   end
 
   # GET /portfolios/new

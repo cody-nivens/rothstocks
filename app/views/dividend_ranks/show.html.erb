@@ -1,0 +1,149 @@
+<p id="notice"><%= notice %></p>
+
+<table>
+<tbody>
+<tr>
+  <th>Symbol</th>
+  <th>Name</th>
+  <th>Industry</th>
+  <th>Sector</th>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.stock.symbol %></td>
+  <td><%= @dividend_rank.stock.name %></td>
+  <td><%= @dividend_rank.stock.industry.name %></td>
+  <td><%= @dividend_rank.stock.sector.name %></td>
+</tr>
+
+<tr>
+  <th>Ccc seq</th>
+  <th>Date</th>
+  <th>Price</th>
+  <th>Yield</th>
+</tr>
+<tr>
+  <td><%= @dividend_rank.ccc_seq %></td>
+  <td><%= @dividend_rank.date %></td>
+  <td><%= @dividend_rank.price %></td>
+  <td><%= @dividend_rank.div_yield %></td>
+</tr>
+
+  <tr>
+  <th>Yield years</th>
+	  <th colspan=3>Dividend Information</th>
+  </tr>
+
+<tr>
+  <td><%= @dividend_rank.yield_years %></td>
+  <th>Old rate</th>
+  <th>New rate</th>
+  <th>MR% inc</th>
+</tr>
+
+<tr>
+  <th>Qtly Sched</th>
+  <td><%= @dividend_rank.old_rate %></td>
+  <td><%= @dividend_rank.new_rate %></td>
+  <td><%= @dividend_rank.mr_inc %></td>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.qtly_sched %></td>
+  <th>Ex div</th>
+  <th>Div record</th>
+  <th>Div pay</th>
+</tr>
+
+<tr>
+  <th>Annual div</th>
+  <td><%= @dividend_rank.ex_div %></td>
+  <td><%= @dividend_rank.div_record %></td>
+  <td><%= @dividend_rank.div_pay %></td>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.annual_div %></td>
+	<td></td>
+	<td></td>
+	<td></td>
+</tr>
+
+
+<tr>
+  <th>Payout</th>
+  <th>P/E</th>
+  <th>TTM EPS</th>
+  <th>PEG Ratio</th>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.payout %></td>
+  <td><%= @dividend_rank.p_e %></td>
+  <td><%= @dividend_rank.ttm_eps %></td>
+  <td><%= @dividend_rank.peg_ratio %></td>
+</tr>
+
+<tr>
+  <th>+/-% vs. Graham</th>
+  <th>TTM P/Sales</th>
+  <th>MRQ P/Book</th>
+  <th>TTM ROE</th>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.i_graham %></td>
+  <td><%= @dividend_rank.ttm_p_sales %></td>
+  <td><%= @dividend_rank.mrq_p_book %></td>
+  <td><%= @dividend_rank.ttm_roe %></td>
+</tr>
+
+<tr>
+  <th>TY growth</th>
+  <th>NY growth</th>
+  <th>Last 5 growth</th>
+  <th>Est 5 growth</th>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.ty_growth %></td>
+  <td><%= @dividend_rank.ny_growth %></td>
+  <td><%= @dividend_rank.last_5_growth %></td>
+  <td><%= @dividend_rank.est_5_growth %></td>
+</tr>
+
+<tr>
+  <th>Mktcap</th>
+  <th>FYE month</th>
+  <th>NA</th>
+  <td></td>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.mktcap %></td>
+  <td><%= @dividend_rank.fye_month %></td>
+  <td><%= @dividend_rank.na %></td>
+  <td></td>
+</tr>
+
+<tr>
+  <th>Inside own</th>
+  <th>Debt equity</th>
+  <th>Chowder rule</th>
+  <td></td>
+</tr>
+
+<tr>
+  <td><%= @dividend_rank.inside_own %></td>
+  <td><%= @dividend_rank.debt_equity %></td>
+  <td><%= @dividend_rank.chowder_rule %></td>
+  <td></td>
+</tr>
+<tr>
+<th><%= link_to 'Back', stock_path(@dividend_rank.stock) %></th>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+	</tbody>
+</table>

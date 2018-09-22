@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dividend Ranks</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Stock</th>
+      <th>Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dividend_ranks.each do |dividend_rank| %>
+      <tr>
+        <td><%= dividend_rank.stock_id %></td>
+        <td><%= dividend_rank.date %></td>
+        <td><%= link_to 'Show', dividend_rank %></td>
+        <td><%= link_to 'Edit', edit_dividend_rank_path(dividend_rank) %></td>
+        <td><%= link_to 'Destroy', dividend_rank, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dividend Rank', new_dividend_rank_path %>

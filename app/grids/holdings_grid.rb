@@ -13,4 +13,7 @@ class HoldingsGrid < BaseGrid
   column(:quantity)
   column(:value)
   date_column(:date)
+  column(:price2, :html => true) do |price2|
+    line_chart DividendRank.where(stock_id: price2.holding.id).group_by_month(:date).pluck(:date,:price), width: "289px", height: "150px"
+  end
 end

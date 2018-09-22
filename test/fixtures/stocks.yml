@@ -5,69 +5,9 @@ one:
   name: MyString
   industry: one
   sector: one
-  ccc_seq: 1
-  price: 1.5
-  yield_years: 1
-  div_yield: 1.5
-  old_rate: 1.5
-  new_rate: 1.5
-  mr_inc: 1.5
-  ex_div: 2018-05-27 12:31:57
-  div_record: 2018-05-27 12:31:57
-  div_pay: 2018-05-27 12:31:57
-  qtly_sched: MyString
-  annual_div: 1.5
-  payout: 1.5
-  i_graham: 1.5
-  p_e: 1.5
-  fye_month: 1
-  ttm_eps: 1.5
-  peg_ratio: 1.5
-  ttm_p_sales: 1.5
-  mrq_p_book: 1.5
-  ttm_roe: 1.5
-  ty_growth: 1.5
-  ny_growth: 1.5
-  last_5_growth: 1.5
-  est_5_growth: 1.5
-  na: 1
-  mktcap: 1
-  inside_own: 1.5
-  debt_equity: 1.5
-  chowder_rule: 1.5
 
 two:
   symbol: F
   name: MyString
   industry: two
   sector: two
-  ccc_seq: 1
-  price: 1.5
-  yield_years: 1
-  div_yield: 1.5
-  old_rate: 1.5
-  new_rate: 1.5
-  mr_inc: 1.5
-  ex_div: 2018-05-27 12:31:57
-  div_record: 2018-05-27 12:31:57
-  div_pay: 2018-05-27 12:31:57
-  qtly_sched: MyString
-  annual_div: 1.5
-  payout: 1.5
-  i_graham: 1.5
-  p_e: 1.5
-  fye_month: 1
-  ttm_eps: 1.5
-  peg_ratio: 1.5
-  ttm_p_sales: 1.5
-  mrq_p_book: 1.5
-  ttm_roe: 1.5
-  ty_growth: 1.5
-  ny_growth: 1.5
-  last_5_growth: 1.5
-  est_5_growth: 1.5
-  na: 1
-  mktcap: 1
-  inside_own: 1.5
-  debt_equity: 1.5
-  chowder_rule: 1.5

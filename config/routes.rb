@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :dividend_ranks
   resources :holdings
 
   resources :portfolios

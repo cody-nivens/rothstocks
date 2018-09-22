@@ -22,6 +22,10 @@ class StocksController < ApplicationController
   # GET /stocks/1
   # GET /stocks/1.json
   def show
+    @dividend_rank_grid = DividendRanksGrid.new(grid_params) do |scope|
+        scope.where(stock_id: params[:id]).page(params[:page])
+    end
+    @dividend_rank = @stock.dividend_rank.last
   end
 
   # GET /stocks/new
