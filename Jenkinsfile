@@ -38,6 +38,7 @@ node {
         sh "kubectl apply --namespace default -f k8s/railsapp_service.yaml"
         sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' k8s/railsapp_deployment.yaml | kubectl apply --namespace default -f -"
         sh "kubectl rollout status --namespace default deployment/railsapp-deployment"
+        sh "sleep 15"
         sh "kubectl set image deployment/railsapp-deployment railsapp=127.0.0.1:30400/rothstocks"
     }
 }
