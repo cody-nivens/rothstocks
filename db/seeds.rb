@@ -262,8 +262,6 @@ sheet.each 6 do |row|
     col = keys[alphac]
       puts "Key: #{key}=#{row[col]}\n"
     end
-debugger
-a = 1
   end
 end
 end
