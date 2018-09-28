@@ -4,6 +4,12 @@ metadata:
   name: railsapp-deployment
 spec:
   replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
   template:
     metadata:
       labels:
@@ -12,6 +18,7 @@ spec:
       containers:
       - name: railsapp
         image: 127.0.0.1:30400/rothstocks:latest
+        imagePullPolicy: Always
         args: ["rails s -p 3000 -b 0.0.0.0"]
         ports:
         - containerPort: 3000
@@ -53,4 +60,3 @@ spec:
               secretKeyRef:
                 name: redis
                 key: redis-password
-
