@@ -104,110 +104,111 @@
 
 <tr>
   <th>Price</th>
-<td><%= DividendRank.where(stock_id: @stock.id).group_by_month(:date).last.price %></td>
+<td><%  @dividend_ranks = DividendRank.where(stock_id: @stock.id).group_by_month(:date) -%>
+<%= @dividend_ranks.last.price %></td>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:price)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:price)  %></td>
 </tr>
 <tr>
 <th>Yield</th>
-<td><%= DividendRank.where(stock_id: @stock.id).group_by_month(:date).last.div_yield %></td>
+<td><%= @dividend_ranks.last.div_yield %></td>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:div_yield)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:div_yield)  %></td>
 </tr>
 
 <!--
 <tr>
 <th>Old Rate</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:old_rate)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:old_rate)  %></td>
 </tr>
 <tr>
 <th>New Rate</th>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:new_rate)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:new_rate)  %></td>
 </tr>
 <tr>
 <th>MR% Inc</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:mr_inc)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:mr_inc)  %></td>
 </tr>
 
 <tr>
 <th>Annual div</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:annual_div)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:annual_div)  %></td>
 </tr>
 
 <tr>
 <th>Payout</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:payout)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:payout)  %></td>
 </tr>
 -->
 <tr>
 <th>P/E</th>
-<td><%= DividendRank.where(stock_id: @stock.id).group_by_month(:date).last.p_e %></td>
+<td><%= @dividend_ranks.last.p_e %></td>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:p_e)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:p_e)  %></td>
 </tr>
 <!--
 <tr>
 <th>TTM/EPS</th>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:ttm_eps)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:ttm_eps)  %></td>
 </tr>
 <tr>
 <th>PEG Ratio</th>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:peg_ratio)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:peg_ratio)  %></td>
 </tr>
 
 <tr>
 <th>+/-% vs. Graham</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:i_graham)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:i_graham)  %></td>
 </tr>
 <tr>
 <th>TTM P/Sales</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:ttm_p_sales)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:ttm_p_sales)  %></td>
 </tr>
 <tr>
 <th>MRQ P/Book</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:mrq_p_book)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:mrq_p_book)  %></td>
 </tr>
 <tr>
 <th>TTM ROE</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:ttm_roe)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:ttm_roe)  %></td>
 </tr>
 
 <tr>
 <th>TY Growth</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:ty_growth)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:ty_growth)  %></td>
 </tr>
 <tr>
 <th>NY Growth</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:ny_growth)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:ny_growth)  %></td>
 </tr>
 <tr>
 <th>Last 5 Growth</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:last_5_growth)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:last_5_growth)  %></td>
 </tr>
 <tr>
 <th>Est 5 Growth</th>
 <td colspan=3>
-<%#= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:est_5_growth)  %></td>
+<%#= line_chart @dividend_ranks.pluck(:date,:est_5_growth)  %></td>
 </tr>
 
 <tr>
 <th>Market Cap</th>
 <td colspan=3>
-<%= line_chart DividendRank.where(stock_id: @stock.id).group_by_month(:date).pluck(:date,:mktcap)  %></td>
+<%= line_chart @dividend_ranks.pluck(:date,:mktcap)  %></td>
 </tr>
 -->
 <tr>
