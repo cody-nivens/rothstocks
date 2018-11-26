@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: railsapp-deployment
+  name: rothstocks-deployment
 spec:
   replicas: 2
   strategy:
@@ -13,10 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        app: railsapp
+        app: rothstocks
     spec:
       containers:
-      - name: railsapp
+      - name: rothstocks
         image: 127.0.0.1:30400/rothstocks:latest
         imagePullPolicy: Always
         args: ["rails s -p 3000 -b 0.0.0.0"]
@@ -26,7 +26,7 @@ spec:
           - name: SECRET_KEY_BASE
             valueFrom:
               secretKeyRef:
-                name: railsapp-secrets
+                name: rothstocks-secrets
                 key: secret-key-base
           - name: DATABASE_USER
             valueFrom:

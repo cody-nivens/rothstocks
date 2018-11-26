@@ -5,7 +5,7 @@ default: &default
 
 development:
   <<: *default
-  database: railsapp_development
+  database: rothstocks_development
   username: db_user
   password: mysecurepass
   host: mariadb-mariadb
@@ -15,7 +15,7 @@ test:
   <<: *default
   username: db_user
   password: mysecurepass
-  database: railsapp_test
+  database: rothstocks_test
   host: mariadb-mariadb
   port: 3306
 
