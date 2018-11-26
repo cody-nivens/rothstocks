@@ -32,7 +32,7 @@ spec:
         - name: SECRET_KEY_BASE
           valueFrom:
             secretKeyRef:
-              name: rothstocks-secrets
+              name: railsapp-secrets
               key: secret-key-base          
         - name: REDIS_PASS
           valueFrom:
