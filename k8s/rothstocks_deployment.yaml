@@ -16,7 +16,7 @@ spec:
         app: rothstocks
     spec:
       containers:
-      - name: rothstocks
+      - name: rothstocks-deployment
         image: 127.0.0.1:30400/rothstocks:latest
         imagePullPolicy: Always
         args: ["rails s -p 3000 -b 0.0.0.0"]

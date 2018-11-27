@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: setup
+  name: rothstocks-setup
 spec:
   template:
     metadata:
-      name: setup
+      name: rothstocks-setup
     spec:
       containers:
       - name: setup
