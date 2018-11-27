@@ -16,30 +16,28 @@ node {
     stage("Build"){
     
         sh "docker build -t ${imageName} -f ./Dockerfile ./"
-        sh "docker build -t ${imageNameTest} -f ./Dockerfile.test ./"
-    }
-    stage("Push"){
-
         sh "docker push ${imageName}"
+        sh "docker build -t ${imageNameTest} -f ./Dockerfile.test ./"
         sh "docker push ${imageNameTest}"
     }
     stage("Test"){
-        sh "kubectl delete --ignore-not-found=true --namespace app-test -f k8s/rothstocks_tests_job.yaml"
-        sh "kubectl apply --namespace app-test -f k8s/rothstocks_tests_job.yaml"
-        sh "until kubectl get pod \$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}') --namespace app-test -o jsonpath='{.status.conditions[?(@.type==\"Ready\")].status}' | grep True ; do sleep 15; done"
-        sh "kubectl --namespace app-test logs --pod-running-timeout=2m -f pod/\$(kubectl get pods --namespace app-test -l 'job-name=tests' -o jsonpath='{.items[0].metadata.name}')"
+        sh "kubectl delete --ignore-not-found=true --namespace app-test -f k8s/${appName}_tests_job.yaml"
+        sh "kubectl apply --namespace app-test -f k8s/${appName}_tests_job.yaml"
+        sh "until kubectl get pod \$(kubectl get pods --namespace app-test -l 'job-name=${appName}-tests' -o jsonpath='{.items[0].metadata.name}') --namespace app-test -o jsonpath='{.status.conditions[?(@.type==\"Ready\")].status}' | grep True ; do sleep 15; done"
+        sh "kubectl --namespace app-test logs --pod-running-timeout=2m -f pod/\$(kubectl get pods --namespace app-test -l 'job-name=${appName}-tests' -o jsonpath='{.items[0].metadata.name}')"
     }
     stage("Deploy"){
 
-        sh "kubectl delete --ignore-not-found=true --namespace default -f k8s/rothstocks_setup_job.yaml"
-        sh "kubectl apply --namespace default -f k8s/rothstocks_setup_job.yaml"
+        sh "kubectl delete --ignore-not-found=true --namespace default -f k8s/${appName}_setup_job.yaml"
+        sh "kubectl apply --namespace default -f k8s/${appName}_setup_job.yaml"
         sh "sleep 15"
-        sh "until kubectl get jobs setup --namespace default -o jsonpath='{.status.conditions[?(@.type==\"Complete\")].status}' | grep True ; do sleep 15; done"
-        sh "kubectl apply --namespace default -f k8s/rothstocks_service.yaml"
-        sh "sed 's#127.0.0.1:30400/rothstocks:latest#'$BUILDIMG'#' k8s/rothstocks_deployment.yaml | kubectl apply --namespace default -f -"
-        sh "kubectl rollout status --namespace default deployment/rothstocks-deployment"
+        sh "until kubectl get pod \$(kubectl get pods --namespace default -l 'job-name=${appName}-setup' -o jsonpath='{.items[0].metadata.name}') --namespace default -o jsonpath='{.status.conditions[?(@.type==\"Ready\")].status}' | grep True ; do sleep 15; done"
+        sh "kubectl logs -n default --pod-running-timeout=2m -f pod/\$(kubectl get -n default pods -l 'job-name=${appName}-setup' -o jsonpath='{.items[0].metadata.name}')"
+
+        sh "kubectl apply --namespace default -f k8s/${appName}_service.yaml"
+        sh "sed 's#${registryHost}/${appName}:latest#'$BUILDIMG'#' k8s/${appName}_deployment.yaml | kubectl apply --namespace default -f -"
+        sh "kubectl rollout status --namespace default deployment/${appName}-deployment"
         sh "sleep 15"
-        sh "kubectl set image deployment/rothstocks-deployment --namespace default rothstocks=127.0.0.1:30400/rothstocks:latest"
-        sh "kubectl set image deployment/rothstocks-deployment --namespace default rothstocks=127.0.0.1:30400/rothstocks"
+        sh "kubectl set image deployment/${appName}-deployment --namespace default ${appName}=${imageName}"
     }
 }
