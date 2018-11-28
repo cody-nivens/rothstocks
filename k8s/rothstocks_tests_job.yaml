@@ -1,16 +1,16 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rothstock-tests
+  name: rothstocks-tests
   labels:
-    app: rothstocks
+    app: rothstock
 spec:
   template:
     metadata:
-      name: rothstock-tests
+      name: rothstocks-tests
     spec:
       containers:
-      - name: rothstock-tests
+      - name: rothstocks-tests
         image: 127.0.0.1:30400/rothstocks_test:latest
         args: ["bin/rails db:environment:set RAILS_ENV=test && rake db:drop && rake db:create && rake db:migrate && rake db:test:prepare && rake test"]
         env:
