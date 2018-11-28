@@ -1,7 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rothstocks-deployment
+  name: rothstocks
+  labels:
+    app: rothstocks
 spec:
   replicas: 2
   strategy:
@@ -16,7 +18,7 @@ spec:
         app: rothstocks
     spec:
       containers:
-      - name: rothstocks-deployment
+      - name: rothstocks
         image: 127.0.0.1:30400/rothstocks:latest
         imagePullPolicy: Always
         args: ["rails s -p 3000 -b 0.0.0.0"]

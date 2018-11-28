@@ -2,6 +2,8 @@ kind: Service
 apiVersion: v1
 metadata:
   name: rothstocks-service
+  labels:
+    app: rothstocks
 spec:
   selector:
     app: rothstocks
