@@ -8,9 +8,9 @@ node {
 
     tag = "${env.BUILD_ID}"
     appName = "rothstocks"
-    registryHost = "127.0.0.1:30400/"
-    imageName = "${registryHost}${appName}:${tag}"
-    imageNameTest = "${registryHost}${appName}_test:latest"
+    registryHost = "127.0.0.1:30400"
+    imageName = "${registryHost}/${appName}:${tag}"
+    imageNameTest = "${registryHost}/${appName}_test:latest"
     env.BUILDIMG=imageName
 
     stage("Build"){
