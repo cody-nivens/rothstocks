@@ -21,7 +21,7 @@
 </p>
 
 <%= line_chart @portfolio.holdings.map{|holding|
-    {name: holding.holding.symbol, data: holding.holding.dividend_rank.group_by_month(:date).pluck(:date,:price)}
+    {name: holding.held.symbol, data: holding.held.dividend_rank.group_by_month(:date).pluck(:date,:price)}
 }, points: false, width: "579px", height: "300px" %>
 
 <%= datagrid_form_for @grid, :method => :get, :url => holdings_path %>

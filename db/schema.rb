@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_20_232010) do
+ActiveRecord::Schema.define(version: 2018_12_01_030458) do
 
   create_table "dividend_ranks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "stock_id"
@@ -51,15 +51,15 @@ ActiveRecord::Schema.define(version: 2018_07_20_232010) do
   end
 
   create_table "holdings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "holding_type"
-    t.bigint "holding_id"
+    t.string "held_type"
+    t.bigint "held_id"
     t.float "price"
     t.float "quantity"
     t.datetime "date"
     t.bigint "portfolio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["holding_type", "holding_id"], name: "index_holdings_on_holding_type_and_holding_id"
+    t.index ["held_type", "held_id"], name: "index_holdings_on_held_type_and_held_id"
     t.index ["portfolio_id"], name: "index_holdings_on_portfolio_id"
   end
 

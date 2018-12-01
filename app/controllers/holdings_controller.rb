@@ -75,6 +75,6 @@ class HoldingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def holding_params
-      params.require(:holding).permit(:holding_id, :holding_type, :price, :quantity, :date, :portfolio_id, :holding_symbol)
+      params.require(:holding).permit(:held_id, :held_type, :price, :quantity, :date, :portfolio_id, :holding_symbol)
     end
 end

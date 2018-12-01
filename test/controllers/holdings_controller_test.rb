@@ -22,7 +22,7 @@ include Devise::Test::IntegrationHelpers
   test "should create holding" do
     sign_in @user
     assert_difference('Holding.count') do
-      post holdings_url, params: { holding: { date: @holding.date, holding_id: @holding.holding_id, holding_type: @holding.holding_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
+      post holdings_url, params: { holding: { date: @holding.date, held_id: @holding.held_id, held_type: @holding.held_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
     end
 
     assert_redirected_to holding_url(Holding.last)
@@ -51,13 +51,13 @@ include Devise::Test::IntegrationHelpers
 
   test "should update holding" do
     sign_in @user
-    patch holding_url(@holding), params: { holding: { date: @holding.date, holding_id: @holding.holding_id, holding_type: @holding.holding_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
+    patch holding_url(@holding), params: { holding: { date: @holding.date, held_id: @holding.held_id, held_type: @holding.held_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
     assert_redirected_to holding_url(@holding)
   end
 
   test "should not update holding" do
     sign_in @user
-    patch holding_url(@holding), params: { holding: { date: @holding.date, holding_id: nil, holding_type: @holding.holding_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
+    patch holding_url(@holding), params: { holding: { date: @holding.date, held_id: nil, held_type: @holding.held_type, portfolio_id: @holding.portfolio_id, price: @holding.price, quantity: @holding.quantity } }
     assert_response :success
   end
 

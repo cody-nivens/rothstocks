@@ -1,6 +1,7 @@
 class Stock < ApplicationRecord
   belongs_to :industry
   belongs_to :sector
+  has_many :holdings, as: :held
 
   has_many :dividend_rank
 
