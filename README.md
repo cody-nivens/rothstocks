@@ -1,40 +1,53 @@
-# rothstock
-This project is a two fold creature.  First is the Rails project and second is the setup to distribute a container for either Docker or Kubernetes.
+# Rothstock
 
-RothStock started as an attempt to determine stocks for my Roth account years ago (read when I had money :)).
+RothStock is a front end to the data from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp) which presents their data in the form of spreadsheets.  
+It allows for the creation of a portfolio to track stocks and the DRIP investments that come from the stocks paying dividends.  Stock data is collected once per day and stored in a Redis database.  The historical data from the DRIP center is stored in a regular database.
 
-The idea is to 
-* Buy stock that pays a dividend.
-* Reinvest the dividend in more shares of the same stock.
+## Getting started
 
-This process gives a two fold return on an invenstment:
-* First is the rising (one hopes) price of the stock.
-* The second is the increased amount of stock (original stock + shares bought by dividend).
-
-When initialized, the application has two users: palo@alto.com and jalo@alto.com.  Palo is an admin, Jalo is not.  The password is '12345689'.
-Additionally, 881 stocks are loaded from a Champion Dividend Stock Excel spreadsheet from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp).
-
-To set up the secrets for running this app, do the following.
-
+This is a standard Rails project.
 ```sh
-$ bundle exec rake secret
-8d428e9d27e3323f1b1ec0089482017480224c9984fc10327f95b0990ec46175d43d756fd644c3bca3703a337a94ced69c868ab0470ac201cd1b6a80c3f89e4a
+git clone https://github.com/cody-nivens/rothstock.git
+cd rothstock
+bundle install
+rake db:create && rake db:migrate && rake db:seed
+rails s
 ```
+### Prerequisites
 
-Encode the secret key base using base64.
+This project assumes a MySQL server for its database functions.
 
-```sh
-$ echo -n "8d428e9d27e3323f1b1ec0089482017480224c9984fc10327f95b0990ec46175d43d756fd644c3bca3703a337a94ced69c868ab0470ac201cd1b6a80c3f89e4a" | base64
-OGQ0MjhlOWQyN2UzMzIzZjFiMWVjMDA4OTQ4MjAxNzQ4MDIyNGM5OTg0ZmMxMDMyN2Y5NWIwOTkwZWM0NjE3NWQ0M2Q3NTZmZDY0NGMzYmNhMzcwM2EzMzdhOTRjZWQ2OWM4NjhhYjA0NzBhYzIwMWNkMWI2YTgwYzNmODllNGE=
-```
+### Installing
 
-Next, encode the database credentials. Use the format DB_ADAPTER://USER:PASSWORD@HOSTNAME/DB_NAME. If you are using mysql with a user 'deploy' and a password 'secret' on 127.0.0.1 and have a database rothstocks, run
+The seed data is loaded from a series of spreadsheets collected over that last several years.  I have included sheets from the last 10 years.  
+The seeds.rb contains code to translate the sheets as they have evolved over the years.  Currently only two years are loaded.  The seeds.rb
+code contains code for at least the last 5 years.
 
-```sh
-$ echo -n "mysql://deploy:secret@127.0.0.1/rothstocks"|base64
-bXlzcWw6Ly9kZXBsb3k6c2VjcmV0QDEyNy4wLjAuMS90b2Rv
-```
+## Deployment
 
-Parts of this project came from [Rails on Kubernetes](https://github.com/tzumby/rails-on-kubernetes.git), [Rails on Kubernetes - Part 2](https://blog.cosmocloud.co/rails-on-kubernetes-part-2/).
+The Jenkinsfile creates two images using Dockerfile.  One image is for testing and has the testing environment.  These images are used with
+a set of Kubernetes yaml files in k8s/ to create a test job which runs the Rails tests using rake db:test; a setup job which
+ creates a database, does the database table migrations and adds data using rake db:seed.  
+These yaml files are set up to run under [Kubernetes](https://github.com/cody-nivens/kube-ci-cd-update) as an example of development -> Repo -> Jenkins -> Kubernetes.
 
-Other parts of this project came from [Rails on Kubernetes - Part 1](https://blog.cosmocloud.co/rails-on-kubernetes-part-1/).
+When the setup job is run, it will process two years worth of speadsheets covering the Dividend Championship stocks.  This includes the monthly data for 
+881 stocks that is loaded from the Champion Dividend Stock Excel spreadsheets from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp).
+Additionally, two users will be installed: palo@alto.com and jalo@alto.com.  Palo is an admin, Jalo is not.  The password is '12345689' for both.
+
+## Built with
+
+* *datagrid* - displays information in a table format.  Allows for filtering in a complex manner, sorting on any column, the ability to format and manipulate the data in a column.
+* *stock_quote* - Provides access to stock data from IEX
+* *redis* - Provides storage for daily stock values.
+* *redis-namespace* - Namespacing the Redis store
+* *redis-rails* - Glue to make Redis work with Rails
+* *redis-rack-cache* - Using Redis as a cache for Rails
+* *groupdate* - Group data by date.  The output from mysql\_tzinfo\_to\_sql /usr/share/zoneinfo must be available on the MySql server for this gem to work correctly.
+* *chartkick* - Allows for creating a line chart for an ActiveRecord collection of records.
+
+## Acknowledgements
+
+Parts of this project came from the following:
+1.  [Rails on Kubernetes](https://github.com/tzumby/rails-on-kubernetes.git)
+2.  [Rails on Kubernetes - Part 2](https://blog.cosmocloud.co/rails-on-kubernetes-part-2/).
+3.  [Rails on Kubernetes - Part 1](https://blog.cosmocloud.co/rails-on-kubernetes-part-1/).
