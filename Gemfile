@@ -57,6 +57,7 @@ gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
 gem 'nokogiri', '1.8.3'
 gem 'mini_portile2', '~> 2.3.0'
+gem 'rails-erd', group: :development
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

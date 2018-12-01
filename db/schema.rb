@@ -10,51 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180720232010) do
+ActiveRecord::Schema.define(version: 2018_07_20_232010) do
 
-  create_table "dividend_ranks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "dividend_ranks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "stock_id"
     t.datetime "date"
     t.integer "ccc_seq"
-    t.float "price", limit: 24
+    t.float "price"
     t.integer "yield_years"
-    t.float "div_yield", limit: 24
-    t.float "old_rate", limit: 24
-    t.float "new_rate", limit: 24
-    t.float "mr_inc", limit: 24
+    t.float "div_yield"
+    t.float "old_rate"
+    t.float "new_rate"
+    t.float "mr_inc"
     t.datetime "ex_div"
     t.datetime "div_record"
     t.datetime "div_pay"
     t.string "qtly_sched"
-    t.float "annual_div", limit: 24
-    t.float "payout", limit: 24
-    t.float "i_graham", limit: 24
-    t.float "p_e", limit: 24
+    t.float "annual_div"
+    t.float "payout"
+    t.float "i_graham"
+    t.float "p_e"
     t.integer "fye_month"
-    t.float "ttm_eps", limit: 24
-    t.float "peg_ratio", limit: 24
-    t.float "ttm_p_sales", limit: 24
-    t.float "mrq_p_book", limit: 24
-    t.float "ttm_roe", limit: 24
-    t.float "ty_growth", limit: 24
-    t.float "ny_growth", limit: 24
-    t.float "last_5_growth", limit: 24
-    t.float "est_5_growth", limit: 24
+    t.float "ttm_eps"
+    t.float "peg_ratio"
+    t.float "ttm_p_sales"
+    t.float "mrq_p_book"
+    t.float "ttm_roe"
+    t.float "ty_growth"
+    t.float "ny_growth"
+    t.float "last_5_growth"
+    t.float "est_5_growth"
     t.integer "na"
     t.integer "mktcap"
-    t.float "inside_own", limit: 24
-    t.float "debt_equity", limit: 24
-    t.float "chowder_rule", limit: 24
+    t.float "inside_own"
+    t.float "debt_equity"
+    t.float "chowder_rule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["stock_id"], name: "index_dividend_ranks_on_stock_id"
   end
 
-  create_table "holdings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "holdings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "holding_type"
     t.bigint "holding_id"
-    t.float "price", limit: 24
-    t.float "quantity", limit: 24
+    t.float "price"
+    t.float "quantity"
     t.datetime "date"
     t.bigint "portfolio_id"
     t.datetime "created_at", null: false
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["portfolio_id"], name: "index_holdings_on_portfolio_id"
   end
 
-  create_table "industries", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.bigint "sector_id"
     t.datetime "created_at", null: false
@@ -71,7 +71,7 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["sector_id"], name: "index_industries_on_sector_id"
   end
 
-  create_table "portfolios", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "portfolios", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
     t.text "descripion"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["user_id"], name: "index_portfolios_on_user_id"
   end
 
-  create_table "roles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "roles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
     t.bigint "resource_id"
@@ -92,14 +92,14 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource_type_and_resource_id"
   end
 
-  create_table "sectors", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "sectors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_sectors_on_name", unique: true
   end
 
-  create_table "stocks", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "stocks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "symbol"
     t.string "name"
     t.bigint "industry_id"
@@ -111,7 +111,7 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["symbol"], name: "index_stocks_on_symbol", unique: true
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -128,7 +128,7 @@ ActiveRecord::Schema.define(version: 20180720232010) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "users_roles", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users_roles", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "role_id"
     t.index ["role_id"], name: "index_users_roles_on_role_id"
