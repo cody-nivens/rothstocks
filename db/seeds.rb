@@ -228,14 +228,12 @@ schema = schemas[month_years[year_month]]
 
 sheet.each 6 do |row|
   break if row[0] == 'Averages for'
-#debugger if ['MMM','KO'].include?(row[1])
   s = Stock.find_by_symbol(row[1])
   if s.nil?
     s = Stock.new
     s.name = row[0]
     s.symbol = row[1]
     sector = Sector.find_by_name(row[keys[schema['sector']]])
-#debugger if sector.nil?
     if sector.nil?
       sector = Sector.create(name: row[keys[schema['sector']]])
     end
@@ -259,7 +257,6 @@ sheet.each 6 do |row|
     next if row[col].kind_of?(Spreadsheet::Excel::Error)
     dr.send("#{key}=", row_col_val(row[col]))
   end
-#debugger if s.symbol == 'EAT'
   begin
     dr.save
   rescue
