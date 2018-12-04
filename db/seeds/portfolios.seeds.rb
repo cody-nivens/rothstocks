@@ -6,7 +6,7 @@ after :users do
     stock = Stock.find_by(symbol: sym)
     dividend_rank = stock.dividend_rank.last
 
-    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
+    portfolio.holdings << Holding.create(held: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
   portfolio = Portfolio.create(name: "Portfolio 2", user_id: user.id)
   
@@ -14,7 +14,7 @@ after :users do
     stock = Stock.find_by(symbol: sym)
     dividend_rank = stock.dividend_rank.last
 
-    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
+    portfolio.holdings << Holding.create(held: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
 
   user2 = User.find_by(email: 'jalo@alto.com')
@@ -24,7 +24,7 @@ after :users do
     stock = Stock.find_by(symbol: sym)
     dividend_rank = stock.dividend_rank.last
 
-    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
+    portfolio.holdings << Holding.create(held: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
   portfolio = Portfolio.create(name: "Portfolio 2", user_id: user2.id)
   
@@ -32,6 +32,6 @@ after :users do
     stock = Stock.find_by(symbol: sym)
     dividend_rank = stock.dividend_rank.last
 
-    portfolio.holdings << Holding.create(holding: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
+    portfolio.holdings << Holding.create(held: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
 end
