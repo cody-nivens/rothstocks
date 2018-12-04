@@ -1,14 +1,14 @@
-# Rothstock
+# Rothstocks
 
-RothStock is a front end to the data from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp) which presents their data in the form of spreadsheets.  
+RothStocks is a front end to the data from [The DRIP Investing Resource Center](http://www.dripinvesting.org/Tools/Tools.asp) which presents their data in the form of spreadsheets.  
 It allows for the creation of a portfolio to track stocks and the DRIP investments that come from the stocks paying dividends.  Stock data is collected once per day and stored in a Redis database.  The historical data from the DRIP center is stored in a regular database.
 
 ## Getting started
 
 This is a standard Rails project.
 ```sh
-git clone https://github.com/cody-nivens/rothstock.git
-cd rothstock
+git clone https://github.com/cody-nivens/rothstocks.git
+cd rothstocks
 bundle install
 rake db:create && rake db:migrate && rake db:seed
 rails s
@@ -19,9 +19,8 @@ This project assumes a MySQL server for its database functions.
 
 ### Installing
 
-The seed data is loaded from a series of spreadsheets collected over that last several years.  I have included sheets from the last 10 years.  
-The seeds.rb contains code to translate the sheets as they have evolved over the years.  Currently only two years are loaded.  The seeds.rb
-code contains code for at least the last 5 years.
+The seed data is loaded from a series of spreadsheets collected over that last several years.  I have included sheets from the last 2 years.  
+The seeds.rb contains code to translate the sheets as they have evolved over the years.  The seeds.rb code contains code for at least the last 5 years.
 
 ## Deployment
 
