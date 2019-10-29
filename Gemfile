@@ -37,6 +37,7 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'groupdate'
 gem 'chartkick'
+gem 'iex-ruby-client'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -51,11 +52,14 @@ gem 'high_voltage', '~> 3.1'
 gem 'rails_admin'
 gem 'datagrid'
 gem 'spreadsheet'
+gem 'libxml-ruby'
+gem 'rspreadsheet'
+gem 'money-rails'
 #gem 'ffi','1.9.23'
 gem 'ffi','~> 1.9.24'
 gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
-gem 'nokogiri', '1.8.3'
+gem 'nokogiri', '1.8.5'
 gem 'mini_portile2', '~> 2.3.0'
 gem 'rails-erd', group: :development
 

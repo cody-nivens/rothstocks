@@ -1,15 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  held: one (Stock)
+  stock: one
   price: 1.5
   quantity: 1.5
   date: 2018-05-27 14:26:34
   portfolio: one
 
 two:
-  held: two (Stock)
+  stock: two
   price: 1.5
   quantity: 1.5
   date: 2018-05-27 14:26:34
   portfolio: two
+
+three:
+  stock: one
+  price: 1.5
+  quantity: 1.5
+  date: 2018-05-27 14:26:34
+  portfolio: two
+
+four:
+  stock: four
+  price: 9863
+  quantity: 100
+  date: 2018-05-27 14:26:34
+  portfolio: one

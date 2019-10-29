@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'champion/index'
+  get 'champion', to: 'champion#index'
+  get 'portflios/:id/report', to: 'portfolios#report', as: 'portfolio_report'
   resources :dividend_ranks
   resources :holdings
 

@@ -2,12 +2,39 @@
 
 <p>
   <strong>Name:</strong>
-  <%= @portfolio.name %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @portfolio.user.email %>
+  <%= @portfolio.name %><br/>
+  </p>
+<div id="main-div">
+<div id="grid-div">
+  <p>
+  <table>
+    <tbody>
+      <tr><td>
+          <strong>Start date:</strong></td><td> <%= @portfolio.start_date %><br/>
+        </td><td></td><td></td></tr>
+      <tr><td>
+          <strong>Cost:&nbsp;</strong></td><td><%= number_to_currency(@portfolio.cost) %><br/>
+        </td><td>
+            <strong>Holdings:&nbsp;</strong></td><td><%= @portfolio.holdings.count %><br/>
+          </td><td></td></tr>
+      <tr><td>
+          <strong>Value:&nbsp;</strong></td><td><%= number_to_currency(@portfolio.value) %><br/>
+        </td><td>
+          <strong>Return on Cost:&nbsp;</strong></td><td><%= "%.2f" % ((@portfolio.value - @portfolio.cost) / @portfolio.cost * 100) %>%<br/>
+        </td><td> </td></tr>
+      <tr><td>
+          <strong>Div Value:&nbsp;</strong></td><td><%= number_to_currency(@portfolio.div_value) %>
+        </td><td>
+  <strong>Return on Cost:&nbsp;</strong></td><td><%= "%.2f" % (@portfolio.div_value / @portfolio.cost * 100) %>%<br/>
+        </td><td> </td></tr>
+      <tr><td>
+          <strong>Div Value(Yearly):&nbsp;</strong></td><td><%= number_to_currency(@portfolio.div_value*4) %>
+        </td><td>
+  <strong>Return on Cost(Yearly):&nbsp;</strong></td><td><%= "%.2f" % (@portfolio.div_value*4 / @portfolio.cost * 100) %>%<br/>
+        </td><td> </td></tr>
+    </tbody>
+  </table>
+  <%= link_to "Report", portfolio_report_path(@portfolio) %>
 </p>
 
 <p>
@@ -15,16 +42,20 @@
   <%= @portfolio.descripion %>
 </p>
 
-<p>
-  <strong>Start date:</strong>
-  <%= @portfolio.start_date %>
-</p>
 
-<%= line_chart @portfolio.holdings.map{|holding|
-    {name: holding.held.symbol, data: holding.held.dividend_rank.group_by_month(:date).pluck(:date,:price)}
+
+<%#= line_chart @portfolio.holdings.map{|holding|
+    {name: holding.stock.symbol, data: holding.stock.dividend_ranks.group_by_month(:date).pluck(:date,:price)}
 }, points: false, width: "579px", height: "300px" %>
+</div>
+<div id="bar-chart-div">
+<%= pie_chart @sector_counts, stacked: true %>
+</div>
+</div>
 
-<%= datagrid_form_for @grid, :method => :get, :url => holdings_path %>
+<div class="clear"></div>
+
+<%#= datagrid_form_for @grid, :method => :get, :url => holdings_path %>
 
 <%= paginate(@grid.assets) %>
 <%= datagrid_table @grid %>

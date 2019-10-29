@@ -1,3 +1,14 @@
+<div id="main-div">
+<div id="grid-div">
+<%= pie_chart @sector_counts %>
+</div>
+<div id="bar-chart-div">
+<%= pie_chart @industry_counts, stacked: true %>
+</div>
+</div>
+
+<div class="clear"></div>
+
 <%= datagrid_form_for @grid, :method => :get, :url => stocks_path %>
 
 <%= paginate(@grid.assets) %>

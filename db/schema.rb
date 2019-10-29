@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_01_030458) do
+ActiveRecord::Schema.define(version: 2019_10_14_152915) do
 
   create_table "dividend_ranks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "stock_id"
@@ -47,20 +47,21 @@ ActiveRecord::Schema.define(version: 2018_12_01_030458) do
     t.float "chowder_rule"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sector_id"
+    t.integer "industry_id"
     t.index ["stock_id"], name: "index_dividend_ranks_on_stock_id"
   end
 
   create_table "holdings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.string "held_type"
-    t.bigint "held_id"
+    t.bigint "stock_id"
     t.float "price"
     t.float "quantity"
     t.datetime "date"
     t.bigint "portfolio_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["held_type", "held_id"], name: "index_holdings_on_held_type_and_held_id"
     t.index ["portfolio_id"], name: "index_holdings_on_portfolio_id"
+    t.index ["stock_id"], name: "index_holdings_on_held_type_and_stock_id"
   end
 
   create_table "industries", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

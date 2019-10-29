@@ -25,11 +25,15 @@ class HoldingsController < ApplicationController
   # POST /holdings
   # POST /holdings.json
   def create
+    @holding_symbol = params[:holding][:holding_symbol]
+    params[:holding].delete(:holding_symbol)
     @holding = Holding.new(holding_params)
+    list = @holding_symbol.split()
+    @holding.stock = Stock.find_by_symbol(list[0])
 
     respond_to do |format|
       if @holding.save
-        format.html { redirect_to @holding, notice: 'Holding was successfully created.' }
+        format.html { redirect_to @holding.portfolio, notice: 'Holding was successfully created.' }
         format.json { render :show, status: :created, location: @holding }
       else
         format.html { render :new }
@@ -41,9 +45,13 @@ class HoldingsController < ApplicationController
   # PATCH/PUT /holdings/1
   # PATCH/PUT /holdings/1.json
   def update
+    @holding_symbol = params[:holding][:holding_symbol]
+    params[:holding].delete(:holding_symbol)
+    @holding.stock = Stock.find_by_symbol(@holding_symbol.split()[0])
+
     respond_to do |format|
       if @holding.update(holding_params)
-        format.html { redirect_to @holding, notice: 'Holding was successfully updated.' }
+        format.html { redirect_to @holding.portfolio, notice: 'Holding was successfully updated.' }
         format.json { render :show, status: :ok, location: @holding }
       else
         format.html { render :edit }
@@ -55,9 +63,10 @@ class HoldingsController < ApplicationController
   # DELETE /holdings/1
   # DELETE /holdings/1.json
   def destroy
+    portfolio = @holding.portfolio
     @holding.destroy
     respond_to do |format|
-      format.html { redirect_to holdings_url, notice: 'Holding was successfully destroyed.' }
+      format.html { redirect_to portfolio, notice: 'Holding was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -75,6 +84,6 @@ class HoldingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def holding_params
-      params.require(:holding).permit(:held_id, :held_type, :price, :quantity, :date, :portfolio_id, :holding_symbol)
+      params.require(:holding).permit(:stock_id, :stock_type, :price, :quantity, :date, :portfolio_id, :holding_symbol)
     end
 end

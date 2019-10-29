@@ -7,3 +7,7 @@ one:
 two:
   name: MyString2
   sector: two
+
+three:
+  name: MyString3
+  sector: one

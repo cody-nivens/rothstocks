@@ -7,11 +7,51 @@ class SectorsController < ApplicationController
     @grid = SectorsGrid.new(grid_params) do |scope|
       scope.page(params[:page])
     end
+    chart_list
+  end
+
+  def chart_list
+    @chart_list = {}
+    t = {}
+    @grid.assets.each do |asset|
+      cnt = asset.stocks.count
+      t[asset.name] = cnt
+    end
+    z = t.sort_by {|_key, value| -value}
+    z.each do |k,v|
+      @chart_list[k] = v
+    end
+  end
+
+  def chart_list2
+    @chart_list = {}
+    t = {}
+    assets = []
+    if !@grid.attributes[:sector_id].nil?
+      assets = Stock.where(sector_id: @grid.attributes[:sector_id])
+    elsif !@grid.attributes[:industry_id].nil?
+      assets = Stock.where(industry_id: @grid.attributes[:industry_id])
+    end
+    assets.each do |asset|
+      t[asset.industry.name] = 0 if t[asset.industry.name].nil?
+      t[asset.industry.name] += 1
+    end
+    z = t.sort_by {|_key, value| -value}
+    z.each do |k,v|
+      @chart_list[k] = v
+    end
   end
 
   # GET /sectors/1
   # GET /sectors/1.json
   def show
+    @industries_grid = IndustriesGrid.new(industry_grid_params.merge({:sector_id=>@sector.id})) do |scope|
+       scope.page(params[:page])
+    end
+    @grid = StocksGrid.new(grid_params.merge({:show_industry=>true,:sector_id=>@sector.id})) do |scope|
+       scope.page(params[:page])
+    end
+    chart_list2
   end
 
   # GET /sectors/new
@@ -67,6 +107,10 @@ class SectorsController < ApplicationController
 
   def grid_params
     params.fetch(:sectors_grid, {}).permit!
+  end
+
+  def industry_grid_params
+    params.fetch(:industries_grid, {}).permit!
   end
 
 

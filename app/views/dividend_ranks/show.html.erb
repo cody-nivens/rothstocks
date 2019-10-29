@@ -147,3 +147,11 @@
 </tr>
 	</tbody>
 </table>
+<%= datagrid_form_for @grid, :method => :get, :url => champion_path %>
+
+<%= pie_chart @sector_counts %>
+
+<%= paginate(@grid.assets) %>
+<%= datagrid_table @grid %>
+<%= paginate(@grid.assets) %>
+

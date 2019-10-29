@@ -11,3 +11,27 @@ two:
   name: MyString
   industry: two
   sector: two
+
+three:
+  symbol: IBM
+  name: MyString
+  industry: three
+  sector: one
+
+four:
+  symbol: PSX
+  name: MyString
+  industry: three
+  sector: one
+
+five:
+  symbol: DKL
+  name: MyString
+  industry: three
+  sector: one
+
+six:
+  symbol: MMP
+  name: MyString
+  industry: three
+  sector: one

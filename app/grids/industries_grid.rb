@@ -5,9 +5,16 @@ class IndustriesGrid < BaseGrid
   end
 
   filter(:sector, :string)
+  filter(:sector_id, :integer)
 
-  column(:name)
-  column(:sector, :order => "sectors.name, industries.name") do
+  column(:sector, :order => "sectors.name") do
 	  self.sector.name
   end
+  column(:name, :order => "industries.name")
+
+
+  column(:stocks) do |sec|
+    sec.stocks.count
+  end
+
 end

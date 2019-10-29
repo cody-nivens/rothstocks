@@ -11,6 +11,9 @@ class DividendRanksController < ApplicationController
   # GET /dividend_ranks/1
   # GET /dividend_ranks/1.json
   def show
+    @grid = DividendRanksGrid.new(grid_params.merge({:stock_id => @dividend_rank.stock.id})) do |scope|
+      scope.page(params[:page])
+    end
   end
 
   # GET /dividend_ranks/new
@@ -68,8 +71,12 @@ class DividendRanksController < ApplicationController
       @dividend_rank = DividendRank.find(params[:id])
     end
 
+    def grid_params
+      params.fetch(:dividend_ranks_grid, {}).permit!
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def dividend_rank_params
-      params.require(:dividend_rank).permit(:stock_id, :date, :ccc_seq, :price, :yield_years, :div_yield, :old_rate, :new_rate, :mr_inc, :ex_div, :div_record, :div_pay, :qtly_sched, :annual_div, :payout, :i_graham, :p_e, :fye_month, :ttm_eps, :peg_ratio, :ttm_p_sales, :mrq_p_book, :ttm_roe, :ty_growth, :ny_growth, :last_5_growth, :est_5_growth, :na, :mktcap, :inside_own, :debt_equity, :chowder_rule)
+      params.require(:dividend_rank).permit(:stock_id, :date, :ccc_seq, :price, :yield_years, :div_yield, :old_rate, :new_rate, :mr_inc, :ex_div, :div_record, :div_pay, :qtly_sched, :annual_div, :payout, :i_graham, :p_e, :fye_month, :ttm_eps, :peg_ratio, :ttm_p_sales, :mrq_p_book, :ttm_roe, :ty_growth, :ny_growth, :last_5_growth, :est_5_growth, :na, :mktcap, :inside_own, :debt_equity, :chowder_rule, :sector_id, :industry_id)
     end
 end

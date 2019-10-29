@@ -34,7 +34,7 @@ class PortfolioTest < ActiveSupport::TestCase
   test 'should add holding' do
     ['T','F'].each do |sym|
       stock = Stock.find_by(symbol: sym)
-      @portfolio.holdings << Holding.create(held: stock, price: stock.dividend_rank.last.price*100, quantity: 100, date: Date.today)
+      @portfolio.holdings << Holding.create(stock: stock, price: stock.dividend_ranks.last.price*100, quantity: 100, date: Date.today)
     end
   end
 

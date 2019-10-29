@@ -1,6 +1,43 @@
 class PortfoliosController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_portfolio, only: [:show, :edit, :update, :destroy]
+  before_action :set_portfolio, only: [:report, :show, :edit, :update, :destroy]
+
+  def report
+    @comments = {}
+    holdings = @portfolio.holdings.collect{|x| x.stock.id}
+
+    drs = DividendRank.where("div_yield >= 3 and p_e <= 20 and price <= 100 and new_rate >= 0.65 and date = ? and stock_id not in (?)", DividendRank.last.date,holdings)
+
+    drs_ids_a = drs.ids
+    drs_ids_b = drs.ids
+
+    @portfolio.holdings.each do |holding|
+      drs_ids_a.each_with_index do |stk_a, index|
+        s_a = DividendRank.find(stk_a)
+        next if holdings.include?(s_a)
+
+        index2 = index + 1
+
+        while index2 < drs_ids_b.length do
+
+          stk_b = drs_ids_b[index2] 
+          next if stk_a == stk_b
+
+          s_b = DividendRank.find(stk_b)
+          next if holdings.include?(s_b)
+
+          if holding.stock.dividend_ranks.last.price > s_a.price + s_b.price &&
+            holding.stock.dividend_ranks.last.new_rate < s_a.new_rate + s_b.new_rate
+            @comments[holding.stock.symbol] = {} if @comments[holding.stock.symbol].nil?
+            @comments[holding.stock.symbol]["#{s_a.new_rate+s_b.new_rate}"] = {} if @comments[holding.stock.symbol]["#{s_a.new_rate+s_b.new_rate}"].nil?
+            @comments[holding.stock.symbol]["#{s_a.new_rate+s_b.new_rate}"]["#{s_a.stock.symbol} #{s_b.stock.symbol}"] = "#{s_a.price} #{s_b.price}"
+          end
+
+          index2 += 1
+        end
+      end
+    end
+  end
 
   def index
     @grid = PortfoliosGrid.new(grid_params) do |scope|
@@ -11,9 +48,11 @@ class PortfoliosController < ApplicationController
   # GET /portfolios/1
   # GET /portfolios/1.json
   def show
-    @grid = HoldingsGrid.new(grid_params) do |scope|
+    @grid = HoldingsGrid.new(holdings_grid_params) do |scope|
       scope.where(portfolio_id: @portfolio.id).page(params[:page])
     end
+    @sector_counts = @portfolio.sector_list
+    @industry_counts = @portfolio.industry_list
   end
 
   # GET /portfolios/new
@@ -70,6 +109,10 @@ class PortfoliosController < ApplicationController
 
   def grid_params
     params.fetch(:portfolios_grid, {}).permit!
+  end
+
+  def holdings_grid_params
+    params.fetch(:holdings_grid, {}).permit!
   end
 
   private

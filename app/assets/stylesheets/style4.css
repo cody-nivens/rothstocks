@@ -1,6 +1,3 @@
-/*
-    DEMO STYLE
-*/
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 
 
@@ -200,6 +197,33 @@ a.article, a.article:hover {
     transition: all 0.3s;
 }
 
+#main-div {
+    margin: auto;
+    width: 800px;
+}
+
+#grid-div    {
+    width: 400px;
+    min-height: 300px;
+    float: left;
+}
+
+#left-div    {
+    width: 400px;
+    float: left;
+}
+
+#bar-chart-div{
+    width: 400px;
+    min-height: 300px;
+    float: left;
+}
+
+.clear:after {
+    clear: both;
+    display: table;
+    content: "";
+}
 
 /* ---------------------------------------------------
     MEDIAQUERIES

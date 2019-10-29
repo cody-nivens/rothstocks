@@ -1,0 +1,16 @@
+<%= datagrid_form_for @grid, :method => :get, :url => champion_path %>
+
+<div id="main-div">
+<div id="grid-div">
+<%= pie_chart @sector_counts, stacked: true %>
+</div>
+<div id="bar-chart-div">
+<%= pie_chart @industry_counts, stacked: true %>
+</div>
+</div>
+
+<div class="clear"></div>
+
+<%= paginate(@grid.assets) %>
+<%= datagrid_table @grid %>
+<%= paginate(@grid.assets) %>

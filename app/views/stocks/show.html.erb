@@ -17,6 +17,22 @@
   <td><%= @stock.sector.name %></td>
   <td></td>
 </tr>
+<tr>
+  <th>Close</th>
+  <th>Last Close</th>
+  <th>Change</th>
+  <th>Change Percent</th>
+  <td></td>
+</tr>
+
+<% @quote = @stock.quote -%>
+<tr>
+  <td><%= @quote["close"] %></td>
+  <td><%= @quote["previous_close"] %></td>
+  <td><%= @quote["change"] %></td>
+  <td><%= @quote["change_percent_s"] %></td>
+  <td></td>
+</tr>
 
 <tr>
 <th><%= link_to 'Back', stocks_path %></th>
@@ -100,13 +116,16 @@
   <td></td>
   <td></td>
 </tr>
+</tbody>
+</table>
 
-
-<tr>
+<table width="100%">
+  <tbody>
+<tr width="100%">
   <th>Price</th>
 <td><%  @dividend_ranks = DividendRank.where(stock_id: @stock.id).group_by_month(:date) -%>
 <%= @dividend_ranks.last.price %></td>
-<td colspan=3>
+<td width="100%">
 <%= line_chart @dividend_ranks.pluck(:date,:price)  %></td>
 </tr>
 <tr>
@@ -219,7 +238,7 @@
 </tr>
 	</tbody>
 </table>
-<%= datagrid_form_for @dividend_rank_grid, :method => :get, :url => dividend_ranks_path %>
+<%#= datagrid_form_for @dividend_rank_grid, :method => :get, :url => dividend_ranks_path %>
 
 <%= paginate(@dividend_rank_grid.assets) %>
 <%= datagrid_table @dividend_rank_grid %>

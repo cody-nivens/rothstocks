@@ -2,7 +2,7 @@
 
 <p>
   <strong>Holding:</strong>
-  <%= "#{@holding.held.symbol} #{@holding.held.name}" %>
+  <%= link_to "#{@holding.stock.symbol} #{@holding.stock.name}", stock_path(@holding.stock) %>
 </p>
 
 <p>

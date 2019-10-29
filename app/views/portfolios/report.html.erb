@@ -1,0 +1,15 @@
+
+<table>
+  <tr><th>Holding</th><th>Comments</th></tr>
+<% @portfolio.holdings.each do |holding| -%>
+  <tr><td><%= "#{holding.stock.symbol} #{holding.stock.name}" %></td>
+    <td>
+      <% unless @comments[holding.stock.symbol].nil? -%>
+      <% @comments[holding.stock.symbol].keys.sort.reverse.each do |key| %>
+      <%= key %> => 
+      <%= @comments[holding.stock.symbol][key] %><br/>
+    <% end -%>
+    <% end -%>
+    </td>
+<% end -%>
+</table>

@@ -71,7 +71,7 @@ industry_id: @stock.industry_id,
 
   test "should destroy stock" do
     sign_in @user
-    @stock.dividend_rank.delete_all
+    @stock.dividend_ranks.delete_all
     assert_difference('Stock.count', -1) do
       delete stock_url(@stock)
     end

@@ -43,6 +43,12 @@ include Devise::Test::IntegrationHelpers
     assert_response :success
   end
 
+  test "should show report" do
+    sign_in @user
+    get portfolio_report_url(@portfolio)
+    assert_response :success
+  end
+
   test "should get edit" do
     sign_in @user
     get edit_portfolio_url(@portfolio)
