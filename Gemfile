@@ -55,12 +55,11 @@ gem 'spreadsheet'
 gem 'libxml-ruby'
 gem 'rspreadsheet'
 gem 'money-rails'
-#gem 'ffi','1.9.23'
 gem 'ffi','~> 1.9.24'
 gem 'autoprefixer-rails', '8.5.2'
 gem "seedbank"
-gem 'nokogiri', '1.8.5'
-gem 'mini_portile2', '~> 2.3.0'
+gem "nokogiri", ">= 1.10.4"
+gem 'mini_portile2', '~> 2.4.0'
 gem 'rails-erd', group: :development
 
 group :development, :test do
