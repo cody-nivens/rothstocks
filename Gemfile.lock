@@ -381,6 +381,7 @@ DEPENDENCIES
   mysql2 (= 0.5.1)
   nokogiri (>= 1.10.4)
   puma (= 4.3.1)
+  rack (>= 2.0.8)
   rails (~> 5.2.1)
   rails-controller-testing
   rails-erd
