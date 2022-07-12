@@ -1,4 +1,5 @@
 after :users do
+  if 1 == 0
   user = User.find_by(email: 'palo@alto.com')
   portfolio = Portfolio.create(name: "First pass at Roth", user_id: user.id)
 
@@ -34,4 +35,5 @@ after :users do
 
     portfolio.holdings << Holding.create(held: stock, price: dividend_rank.price*100, quantity: 100, date: dividend_rank.ex_div - 1.day)
   end
+end
 end

@@ -1,0 +1,40 @@
+class AddColumnsToStock < ActiveRecord::Migration[6.1]
+  def change
+      add_column :stocks, :primary_exchange, :string
+      add_column :stocks, :calculation_price, :string
+      add_column :stocks, :open, :float
+      add_column :stocks, :open_time, :float
+      add_column :stocks, :close, :float
+      add_column :stocks, :close_time, :float
+      add_column :stocks, :high, :float
+      add_column :stocks, :low, :float
+      add_column :stocks, :latest_price, :float
+      add_column :stocks, :latest_source, :string
+      add_column :stocks, :latest_time, :string
+      add_column :stocks, :latest_update, :float
+      add_column :stocks, :latest_volume, :float
+      add_column :stocks, :iex_realtime_price, :float
+      add_column :stocks, :iex_realtime_size, :float
+      add_column :stocks, :iex_last_updated, :float
+      add_column :stocks, :delayed_price, :float
+      add_column :stocks, :delayed_price_time, :float
+      add_column :stocks, :extended_price, :float
+      add_column :stocks, :extended_change_percent, :float
+      add_column :stocks, :extended_price_time, :float
+      add_column :stocks, :previous_close, :float
+      add_column :stocks, :change, :float
+      add_column :stocks, :change_percent, :float
+      add_column :stocks, :iex_market_percent, :float
+      add_column :stocks, :iex_volume, :float
+      add_column :stocks, :avg_total_volume, :float
+      add_column :stocks, :iex_bid_price, :float
+      add_column :stocks, :iex_bid_size, :float
+      add_column :stocks, :iex_ask_price, :float
+      add_column :stocks, :iex_ask_size, :float
+      add_column :stocks, :market_cap, :float
+      add_column :stocks, :pe_ratio, :float
+      add_column :stocks, :week_52_high, :float
+      add_column :stocks, :week_52_low, :float
+      add_column :stocks, :ytd_change, :float
+  end
+end
