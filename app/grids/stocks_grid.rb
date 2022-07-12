@@ -17,8 +17,8 @@ class StocksGrid < BaseGrid
   end
   filter(:name, :string)
   filter(:symbol, :string)
-#  filter(:sector_id , :enum, :select => proc { Sector.all.order(:name).map {|c| [c.name, c.id] }})
-#  filter(:industry_id, :enum, :select => proc { Industry.joins(:sector).all.order("sectors.name asc, industries.name asc").map {|c| ["#{c.sector.name}:#{c.name}", c.id] }}, :if => :show_industry)
+  filter(:sector_id , :enum, :select => proc { Sector.all.order(:name).map {|c| [c.name, c.id] }})
+  filter(:industry_id, :enum, :select => proc { Industry.joins(:sector).all.order("sectors.name asc, industries.name asc").map {|c| ["#{c.sector.name}:#{c.name}", c.id] }}, :if => :show_industry)
   #filter(:condition3, :dynamic)
   #filter(:condition4, :dynamic)
   #filter(:condition5, :dynamic)

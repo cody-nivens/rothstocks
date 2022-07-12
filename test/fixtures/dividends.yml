@@ -1,7 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  stock_id: 
+  stock: :one 
   ex_date: 2022-07-11
   payment_date: 2022-07-11
   record_date: 2022-07-11
@@ -13,7 +13,7 @@ one:
   date: 2022-07-11
 
 two:
-  stock_id: 
+  stock: :two
   ex_date: 2022-07-11
   payment_date: 2022-07-11
   record_date: 2022-07-11
