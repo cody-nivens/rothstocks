@@ -3,6 +3,10 @@
 <table>
 	<tbody>
 <tr>
+  <td>
+<table>
+	<tbody>
+<tr>
   <th>Symbol</th>
   <th>Name</th>
   <th>Industry</th>
@@ -25,12 +29,11 @@
   <td></td>
 </tr>
 
-<% @quote = @stock.quote -%>
 <tr>
-  <td><%= @quote["close"] %></td>
-  <td><%= @quote["previous_close"] %></td>
-  <td><%= @quote["change"] %></td>
-  <td><%= @quote["change_percent_s"] %></td>
+  <td><%= @stock.close %></td>
+  <td><%= @stock.previous_close %></td>
+  <td><%= @stock.change %></td>
+  <td><%= @stock.change_percent %></td>
   <td></td>
 </tr>
 
@@ -55,43 +58,18 @@
 </tr>
 
 <tr>
-  <td><%= @dividend_rank.stock.symbol %></td>
-  <td><%= @dividend_rank.stock.name %></td>
-  <td><%= @dividend_rank.stock.industry.name %></td>
-  <td><%= @dividend_rank.stock.sector.name %></td>
+  <td><%= @dividend.stock.symbol %></td>
+  <td><%= @dividend.stock.name %></td>
+  <td><%= @dividend.stock.industry.name %></td>
+  <td><%= @dividend.stock.sector.name %></td>
   <td></td>
 </tr>
 
 <tr>
-  <th>Ccc seq</th>
-  <td><%= @dividend_rank.ccc_seq %></td>
   <th>Date</th>
-  <td><%= @dividend_rank.date %></td>
+  <td><%= @dividend.date %></td>
   <td></td>
 </tr>
-<tr>
-  <th>Inside own</th>
-  <th>Debt equity</th>
-  <th>Chowder rule</th>
-  <td></td>
-  <td></td>
-</tr>
-
-<tr>
-  <td><%= @dividend_rank.inside_own %></td>
-  <td><%= @dividend_rank.debt_equity %></td>
-  <td><%= @dividend_rank.chowder_rule %></td>
-  <td></td>
-  <td></td>
-</tr>
-
-  <tr>
-  <th>Yield years</th>
-  <td><%= @dividend_rank.yield_years %></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  </tr>
 
 <tr>
   <th>Qtly Sched</th>
@@ -102,147 +80,144 @@
 </tr>
 
 <tr>
-  <td><%= @dividend_rank.qtly_sched %></td>
-  <td><%= @dividend_rank.ex_div %></td>
-  <td><%= @dividend_rank.div_record %></td>
-  <td><%= @dividend_rank.div_pay %></td>
+  <td><%= @dividend.frequency %></td>
+  <td><%= @dividend.ex_date %></td>
+  <td><%= @dividend.record_date %></td>
+  <td><%= @dividend.payment_date %></td>
   <td></td>
 </tr>
 
-<tr>
-  <td><%= @dividend_rank.fye_month %></td>
-  <td><%= @dividend_rank.na %></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
 </tbody>
 </table>
-
+</td>
+<td>
 <table width="100%">
   <tbody>
 <tr width="100%">
-  <th>Price</th>
-<td><%  @dividend_ranks = DividendRank.where(stock_id: @stock.id).group_by_month(:date) -%>
-<%= @dividend_ranks.last.price %></td>
+  <th>Close</th>
+<td><%  @hp = HistoricalPrice.where(stock_id: @stock.id).group(:date) -%>
 <td width="100%">
-<%= line_chart @dividend_ranks.pluck(:date,:price)  %></td>
-</tr>
-<tr>
-<th>Yield</th>
-<td><%= @dividend_ranks.last.div_yield %></td>
-<td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:div_yield)  %></td>
+<%= line_chart @hp.pluck(:date,:close)  %></td>
 </tr>
 
+<tr width="100%">
+
+  <th>Dividends</th>
+<td><%  @hp = Dividend.where(stock_id: @stock.id).group(:payment_date) -%>
+<td width="100%">
+<%= line_chart @hp.pluck(:payment_date,:amount)  %></td>
+</tr>
 <!--
 <tr>
 <th>Old Rate</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:old_rate)  %></td>
+<%#= line_chart @dividends.pluck(:date,:old_rate)  %></td>
 </tr>
 <tr>
 <th>New Rate</th>
 <td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:new_rate)  %></td>
+<%#= line_chart @dividends.pluck(:date,:new_rate)  %></td>
 </tr>
 <tr>
 <th>MR% Inc</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:mr_inc)  %></td>
+<%#= line_chart @dividends.pluck(:date,:mr_inc)  %></td>
 </tr>
 
 <tr>
 <th>Annual div</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:annual_div)  %></td>
+<%#= line_chart @dividends.pluck(:date,:annual_div)  %></td>
 </tr>
 
 <tr>
 <th>Payout</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:payout)  %></td>
+<%#= line_chart @dividends.pluck(:date,:payout)  %></td>
 </tr>
--->
 <tr>
 <th>P/E</th>
-<td><%= @dividend_ranks.last.p_e %></td>
+<td><%#= @dividends.last.p_e %></td>
 <td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:p_e)  %></td>
+<%#= line_chart @dividends.pluck(:date,:p_e)  %></td>
 </tr>
-<!--
 <tr>
 <th>TTM/EPS</th>
 <td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:ttm_eps)  %></td>
+<%#= line_chart @dividends.pluck(:date,:ttm_eps)  %></td>
 </tr>
 <tr>
 <th>PEG Ratio</th>
 <td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:peg_ratio)  %></td>
+<%#= line_chart @dividends.pluck(:date,:peg_ratio)  %></td>
 </tr>
 
 <tr>
 <th>+/-% vs. Graham</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:i_graham)  %></td>
+<%#= line_chart @dividends.pluck(:date,:i_graham)  %></td>
 </tr>
 <tr>
 <th>TTM P/Sales</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:ttm_p_sales)  %></td>
+<%#= line_chart @dividends.pluck(:date,:ttm_p_sales)  %></td>
 </tr>
 <tr>
 <th>MRQ P/Book</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:mrq_p_book)  %></td>
+<%#= line_chart @dividends.pluck(:date,:mrq_p_book)  %></td>
 </tr>
 <tr>
 <th>TTM ROE</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:ttm_roe)  %></td>
+<%#= line_chart @dividends.pluck(:date,:ttm_roe)  %></td>
 </tr>
 
 <tr>
 <th>TY Growth</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:ty_growth)  %></td>
+<%#= line_chart @dividends.pluck(:date,:ty_growth)  %></td>
 </tr>
 <tr>
 <th>NY Growth</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:ny_growth)  %></td>
+<%#= line_chart @dividends.pluck(:date,:ny_growth)  %></td>
 </tr>
 <tr>
 <th>Last 5 Growth</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:last_5_growth)  %></td>
+<%#= line_chart @dividends.pluck(:date,:last_5_growth)  %></td>
 </tr>
 <tr>
 <th>Est 5 Growth</th>
 <td colspan=3>
-<%#= line_chart @dividend_ranks.pluck(:date,:est_5_growth)  %></td>
+<%#= line_chart @dividends.pluck(:date,:est_5_growth)  %></td>
 </tr>
 
 <tr>
 <th>Market Cap</th>
 <td colspan=3>
-<%= line_chart @dividend_ranks.pluck(:date,:mktcap)  %></td>
+<%#= line_chart @dividends.pluck(:date,:mktcap)  %></td>
 </tr>
 -->
 <tr>
-<th><%= link_to 'Back', stock_path(@dividend_rank.stock) %></th>
+<th><%= link_to 'Back', stock_path(@dividend.stock) %></th>
   <td></td>
   <td></td>
-  <td></td>
+  <td>
+  </td>
 </tr>
 	</tbody>
 </table>
-<%#= datagrid_form_for @dividend_rank_grid, :method => :get, :url => dividend_ranks_path %>
+  </td>
+</tr>
+	</tbody>
+</table>
+<%#= datagrid_form_for @dividend_grid, :method => :get, :url => dividends_path %>
 
-<%= paginate(@dividend_rank_grid.assets) %>
-<%= datagrid_table @dividend_rank_grid %>
-<%= paginate(@dividend_rank_grid.assets) %>
+<%= paginate(@dividends_grid.assets) %>
+<%= datagrid_table @dividends_grid %>
+<%= paginate(@dividends_grid.assets) %>
 
 <%= link_to 'Back', stocks_path %>
 

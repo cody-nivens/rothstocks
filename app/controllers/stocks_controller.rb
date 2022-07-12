@@ -9,8 +9,8 @@ class StocksController < ApplicationController
          @grid = StocksGrid.new(grid_params.merge(show_industry: true)) do |scope|
                scope.page(params[:page])
            end
-       @sector_counts = @grid.assets.group("stocks.sector_id").count.map{|k,v| {Sector.find(k).name=> v}}.reduce(:merge)
-       @industry_counts = @grid.assets.group("stocks.industry_id").count.map{|k,v| {Industry.find(k).name=> v}}.reduce(:merge)
+#       @sector_counts = @grid.assets.group("stocks.sector_id").count.map{|k,v| {Sector.find(k).name=> v}}.reduce(:merge)
+#       @industry_counts = @grid.assets.group("stocks.industry_id").count.map{|k,v| {Industry.find(k).name=> v}}.reduce(:merge)
        }
        format.json {
            @stocks = Stock.order(:symbol).where("symbol like ?", "%#{params[:term]}%")
@@ -24,10 +24,10 @@ class StocksController < ApplicationController
   # GET /stocks/1
   # GET /stocks/1.json
   def show
-    @dividend_rank_grid = DividendRanksGrid.new(grid_params) do |scope|
+    @dividends_grid = DividendsGrid.new(grid_params) do |scope|
         scope.where(stock_id: params[:id]).order(:date).page(params[:page])
     end
-    @dividend_rank = @stock.dividend_ranks.last
+    @dividend = @stock.dividends.last
   end
 
   # GET /stocks/new

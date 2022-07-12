@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+//r# = require jquery-ui
 //= require rails-ujs
 //= require highcharts
 //= require chartkick

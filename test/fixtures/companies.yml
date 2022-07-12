@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  stock: :one
+  exchange: MyString
+  industry: :one
+  website: MyText
+  description: MyText
+  ceo: MyString
+  security_name: MyString
+  issue_type: MyString
+  sector: :one
+  employees: 1
+
+two:
+  name: MyString
+  stock: :two
+  exchange: MyString
+  industry: :two
+  website: MyText
+  description: MyText
+  ceo: MyString
+  security_name: MyString
+  issue_type: MyString
+  sector: :two
+  employees: 1
