@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.1'
+gem 'rails', '~> 6.0'
 # Use mysql as the database for Active Record
 gem 'mysql2', '0.5.1'
 # Use Puma as the app server
@@ -31,13 +31,14 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem "rack", ">= 2.2.3"
 
+gem 'acts-as-taggable-on'
 gem 'stock_quote'
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'groupdate'
-gem 'chartkick', '~> 3.3.0'
+gem 'chartkick'
 gem 'iex-ruby-client'
 
 # Use Capistrano for deployment
@@ -45,47 +46,52 @@ gem 'iex-ruby-client'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise', '~> 4.7.1'
-gem 'bootstrap-sass', '~> 3.4.1'
+gem 'devise'
+gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'rolify'
-gem 'high_voltage', '~> 3.1'
-gem 'kaminari', '~> 1.2.1'
+gem 'high_voltage'
+gem 'kaminari'
 gem 'rails_admin'
 gem 'datagrid'
 gem 'spreadsheet'
 gem 'libxml-ruby'
 gem 'rspreadsheet'
 gem 'money-rails'
-gem 'ffi','~> 1.9.24'
-gem 'autoprefixer-rails', '8.5.2'
+gem 'ffi'
+gem 'autoprefixer-rails'
 gem "seedbank"
-gem "nokogiri", ">= 1.10.8"
-gem 'mini_portile2', '~> 2.4.0'
+gem "nokogiri"
+gem 'mini_portile2'
 gem 'rails-erd', group: :development
+gem 'net-ftp'
+gem 'net-smtp'
+gem 'pry'
+gem 'pry-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver', '3.12.0'
-  gem 'webdrivers'
+  gem 'capybara'
+  #gem 'selenium-webdriver', '3.12.0'
+  #gem 'webdrivers'
   gem 'simplecov', require: false, group: :test
   gem 'rails-controller-testing'
   gem 'dotenv-rails'
-  gem 'dotenv', '2.4.0'
+  gem 'dotenv'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console'
   gem 'listen'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
   #gem 'spring-commands-rspec'
   gem 'vcr'
   gem 'rails_layout'
 end
 
+gem 'sassc-rails'
