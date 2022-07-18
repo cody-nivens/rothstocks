@@ -2,6 +2,6 @@
   "name": "RothStocks",
   "private": true,
   "dependencies": {
-    "jquery-ui": "^1.13.1"
+    "jquery-ui": "^1.13.2"
   }
 }
